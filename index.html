@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tharsei: Sei guten Mutes. | Psychosoziale Beratung · Esther Sluiter, Emden</title>
+<meta name="description" content="Tharsei: psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden. Begleitung in Lebenskrisen mit Achtbarkeit, von Esther Sluiter und Therapiebegleithund Kurt." />
+
+<link rel="icon" type="image/png" href="images/logo.png" />
+<link rel="apple-touch-icon" href="images/logo.png" />
+
+<!-- TODO: og:url und og:image auf die echte, live erreichbare Domain/Pfad anpassen, sobald die Seite deployed ist. -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:site_name" content="Tharsei" />
+<meta property="og:url" content="https://tharsei.de/" />
+<meta property="og:title" content="Tharsei: Sei guten Mutes. | Psychosoziale Beratung · Esther Sluiter, Emden" />
+<meta property="og:description" content="Psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden. Begleitung in Lebenskrisen mit Achtbarkeit, von Esther Sluiter und Therapiebegleithund Kurt." />
+<meta property="og:image" content="https://tharsei.de/images/portrait.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Tharsei: Sei guten Mutes." />
+<meta name="twitter:description" content="Psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden, von Esther Sluiter." />
+<meta name="twitter:image" content="https://tharsei.de/images/portrait.jpg" />
+
+<!-- TODO: Adresse/Telefon final prüfen, sobald die Seite live ist. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Tharsei: Esther Sluiter",
+  "description": "Psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden.",
+  "url": "https://tharsei.de/",
+  "image": "https://tharsei.de/images/portrait.jpg",
+  "logo": "https://tharsei.de/images/logo.png",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kloster-Langen-Straße 30",
+    "postalCode": "26723",
+    "addressLocality": "Emden",
+    "addressCountry": "DE"
+  },
+  "areaServed": "Emden, Ostfriesland",
+  "founder": {
+    "@type": "Person",
+    "name": "Esther Sluiter"
+  }
+}
+</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          sand:      '#F8F4EB',
+          paper:     '#F1EBDC',
+          cream:     '#E9E1CF',
+          sage:      '#8B9A78',
+          'sage-dp': '#5D6C4E',
+          forest:    '#333D2B',
+          terra:     '#C0774E',
+          'terra-sf':'#D89D79',
+          ink:       '#2C2E26',
+          muted:     '#6C6A5B',
+        },
+        fontFamily: {
+          display: ['Lora', 'Georgia', 'serif'],
+          body:    ['Inter', 'system-ui', 'sans-serif'],
+        },
+        boxShadow: {
+          soft:  '0 18px 40px -22px rgba(51,61,43,0.35)',
+          card:  '0 10px 30px -18px rgba(51,61,43,0.30)',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root { color-scheme: light; }
+  html { scroll-behavior: smooth; }
+  html, body { max-width:100%; overflow-x:hidden; }
+  img, iframe { max-width:100%; }
+  body { background: #F8F4EB; }
+
+  /* Organic paper texture on the background */
+  body::before {
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(1100px 600px at 82% -8%, rgba(139,154,120,0.20), transparent 60%),
+      radial-gradient(900px 520px at -6% 12%, rgba(192,119,78,0.10), transparent 55%),
+      radial-gradient(1200px 900px at 50% 120%, rgba(93,108,78,0.10), transparent 60%);
+  }
+
+  .font-display { font-family:'Lora',Georgia,serif; }
+
+  /* ---- SPA page fade routing ---- */
+  .page { display:none; }
+  .page.active {
+    display:block;
+    animation: pageIn .6s cubic-bezier(.22,.61,.36,1) both;
+  }
+  @keyframes pageIn {
+    from { opacity:0; transform: translateY(14px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  /* ---- reveal on load ---- */
+  .rise { opacity:0; transform: translateY(20px); animation: rise .8s cubic-bezier(.22,.61,.36,1) forwards; }
+  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.30s}.rise.d4{animation-delay:.42s}.rise.d5{animation-delay:.54s}
+  @keyframes rise { to { opacity:1; transform:none; } }
+
+  /* ---- signature: the Achtbarkeit pillars breathe softly ---- */
+  .breathe { animation: breathe 7s ease-in-out infinite; }
+  .breathe.b2 { animation-delay: 1.2s; }
+  .breathe.b3 { animation-delay: 2.4s; }
+  @keyframes breathe {
+    0%,100% { transform: translateY(0) scale(1); }
+    50%     { transform: translateY(-6px) scale(1.015); }
+  }
+
+  /* accordion */
+  .acc-body { max-height:0; overflow:hidden; transition:max-height .5s ease; }
+  .acc-item.open .acc-body { max-height:640px; }
+  .acc-item.open .acc-chevron { transform: rotate(180deg); }
+  .acc-chevron { transition: transform .4s ease; }
+
+  /* nav underline */
+  .nav-link { position:relative; }
+  .nav-link::after{
+    content:""; position:absolute; left:0; right:0; bottom:-4px; height:2px;
+    background:#C0774E; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .3s ease;
+  }
+  .nav-link:hover::after, .nav-link.current::after { transform:scaleX(1); }
+
+  /* image frame + graceful fallback */
+  .frame { position:relative; overflow:hidden; background:
+      linear-gradient(135deg,#E9E1CF, #D9E0CE); }
+  .frame img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block; }
+  .frame img.contain { object-fit:contain; padding:1.25rem; }
+  .frame .ph {
+    position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:.5rem; text-align:center; padding:1.25rem; color:#5D6C4E;
+    background: linear-gradient(150deg,#E7E9D8 0%, #DCE3D1 45%, #E9DBC9 100%);
+  }
+  .frame img[data-broken="1"] { display:none; }
+
+  .btn-terra { background:#C0774E; color:#FBF7EF; transition: all .25s ease; }
+  .btn-terra:hover { background:#A9663F; transform: translateY(-2px); box-shadow:0 14px 26px -14px rgba(192,119,78,.7); }
+  .btn-ghost { border:1.5px solid #5D6C4E; color:#3A4630; transition: all .25s ease; }
+  .btn-ghost:hover { background:#5D6C4E; color:#F8F4EB; }
+
+  .chip { transition: all .2s ease; }
+  .chip.on { background:#5D6C4E; color:#F8F4EB; border-color:#5D6C4E; }
+
+  .leaf-divider { color:#8B9A78; opacity:.7; }
+
+  #mobileMenu { overflow:hidden; max-height:80vh; transition: max-height .35s ease, opacity .25s ease; }
+  #mobileMenu.hidden-menu { max-height:0; opacity:0; pointer-events:none; border-top-color:transparent; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+    .rise { opacity:1; transform:none; }
+    .page.active { animation:none; }
+  }
+
+  :focus-visible { outline:3px solid #C0774E; outline-offset:3px; border-radius:4px; }
+</style>
+</head>
+
+<body class="font-body text-ink antialiased">
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-sand/80 border-b border-cream/70">
+  <div class="max-w-6xl mx-auto px-5 md:px-8">
+    <div class="flex items-center justify-between h-[74px]">
+      <!-- Logo -->
+      <a href="#" data-nav="home" class="flex items-center gap-2.5 group" aria-label="Tharsei Startseite">
+        <img data-img="logo" width="199" height="200" alt="Tharsei: Sei guten Mutes" class="h-12 w-auto" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-[15px] text-ink/85" aria-label="Hauptnavigation">
+        <a href="#" data-nav="home"     class="nav-link">Start</a>
+        <a href="#" data-nav="haltung"  class="nav-link">Meine Haltung</a>
+        <a href="#" data-nav="angebote" class="nav-link">Angebote &amp; Ablauf</a>
+        <a href="#" data-nav="kurt"     class="nav-link">Kurt</a>
+        <a href="#" data-nav="kontakt"  class="nav-link">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button data-nav="kontakt" class="hidden sm:inline-flex btn-terra px-5 py-2.5 rounded-full text-sm font-medium">
+          Erstgespräch anfragen
+        </button>
+        <!-- Hamburger -->
+        <button id="burger" class="lg:hidden grid place-items-center w-11 h-11 rounded-full text-forest hover:bg-cream/70 transition" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="hidden-menu lg:hidden border-t border-cream/70 bg-sand/95 backdrop-blur">
+    <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1 text-[17px]" aria-label="Mobile Navigation">
+      <a href="#" data-nav="home"     class="py-3 px-2 rounded-lg hover:bg-cream/60">Start</a>
+      <a href="#" data-nav="haltung"  class="py-3 px-2 rounded-lg hover:bg-cream/60">Meine Haltung</a>
+      <a href="#" data-nav="angebote" class="py-3 px-2 rounded-lg hover:bg-cream/60">Angebote &amp; Ablauf</a>
+      <a href="#" data-nav="kurt"     class="py-3 px-2 rounded-lg hover:bg-cream/60">Tiergestützte Pädagogik mit Kurt</a>
+      <a href="#" data-nav="kontakt"  class="py-3 px-2 rounded-lg hover:bg-cream/60">Kontakt</a>
+      <button data-nav="kontakt" class="mt-2 btn-terra px-5 py-3 rounded-full text-sm font-medium">Erstgespräch anfragen</button>
+    </nav>
+  </div>
+</header>
+
+<main id="app">
+
+<!-- ================================================================ -->
+<!-- ============================ HOME ============================== -->
+<!-- ================================================================ -->
+<section id="page-home" class="page active">
+
+  <!-- Hero -->
+  <div class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10" style="background:
+        radial-gradient(900px 520px at 78% 8%, rgba(139,154,120,.28), transparent 62%),
+        radial-gradient(760px 480px at 8% 90%, rgba(192,119,78,.14), transparent 58%);"></div>
+
+    <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-14 md:pb-20 grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-7">
+        <p class="rise d1 inline-flex items-center gap-2 text-sage-dp/90 text-sm tracking-[.18em] uppercase mb-6">
+          <i data-lucide="sprout" class="w-4 h-4"></i> Psychosoziale Beratung · Emden
+        </p>
+        <h1 class="rise d2 font-display text-[2.1rem] sm:text-5xl md:text-6xl leading-[1.1] text-forest">
+          Sei guten Mutes.<br><span class="italic text-terra">Fasse Mut.</span>
+        </h1>
+        <p class="rise d3 mt-6 text-lg md:text-xl text-muted max-w-xl leading-relaxed">
+          Ein geschützter Raum, in dem Sie sein dürfen, wie Sie sind: Begleitung in Lebenskrisen,
+          achtsam, wertschätzend und mit einem klaren Blick für das, was in Ihnen steckt.
+        </p>
+        <div class="rise d4 mt-9 flex flex-wrap gap-4">
+          <button data-nav="kontakt" class="btn-terra px-7 py-3.5 rounded-full font-medium inline-flex items-center gap-2">
+            Erstgespräch anfragen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <button data-nav="haltung" class="btn-ghost px-7 py-3.5 rounded-full font-medium">
+            Meine Haltung kennenlernen
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 rise d3">
+        <div class="frame rounded-[2rem] aspect-[4/5] shadow-soft ring-1 ring-white/50">
+          <img data-img="portrait" width="771" height="1080" alt="Esther Sluiter, Begleitung in Lebenskrisen bei Tharsei in Emden" loading="lazy" style="object-position:top" />
+          <div class="ph">
+            <i data-lucide="heart-handshake" class="w-9 h-9"></i>
+            <span class="text-sm font-medium">Warmes Foto: Esther Sluiter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achtbarkeit — the signature triptych -->
+  <div class="bg-paper/70 border-y border-cream/70">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24 text-center">
+      <div class="flex items-center justify-center gap-3 mb-8 leaf-divider" aria-hidden="true">
+        <span class="h-px w-14 bg-current opacity-40"></span>
+        <i data-lucide="feather" class="w-5 h-5"></i>
+        <span class="h-px w-14 bg-current opacity-40"></span>
+      </div>
+      <h2 class="font-display text-3xl md:text-5xl text-forest leading-tight">
+        Jeder Mensch ist ein <span class="italic text-terra">beschenktes</span> Geschenk.
+      </h2>
+      <p class="mt-5 text-muted max-w-2xl mx-auto text-lg">
+        Laut frühhochdeutschem Wörterbuch „Ansehen, Würde, Wertschätzung, insbesondere von Personen
+        hohen Standes". Im Neudeutschen wird es nicht mehr verwendet. Für mich impliziert dieses Wort
+        drei Haltungen, die in meiner Arbeit eine zentrale Rolle spielen:
+      </p>
+
+      <div class="mt-14 grid md:grid-cols-3 gap-6">
+        <!-- Achtsamkeit -->
+        <article class="breathe bg-sand rounded-3xl p-8 shadow-card text-left border border-cream">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage/15 text-sage-dp mb-5">
+            <i data-lucide="eye" class="w-6 h-6"></i>
+          </span>
+          <h3 class="font-display text-2xl text-forest mb-2">Achtsamkeit</h3>
+          <p class="text-muted leading-relaxed">im Sinne einer wachen, urteilsfreien Gegenwärtigkeit. Sie ist Ausdruck innerer Bereitschaft, dem anderen wirklich zu begegnen, nicht als Objekt, sondern als von Gott geliebtes Gegenüber wertzuschätzen.</p>
+        </article>
+        <!-- Dankbarkeit -->
+        <article class="breathe b2 bg-sand rounded-3xl p-8 shadow-card text-left border border-cream">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-terra/15 text-terra mb-5">
+            <i data-lucide="gift" class="w-6 h-6"></i>
+          </span>
+          <h3 class="font-display text-2xl text-forest mb-2">Dankbarkeit</h3>
+          <p class="text-muted leading-relaxed">als Haltung, die den anderen als Gabe erkennt, unabhängig von seiner Funktion, seiner Geschichte oder seinen Symptomen. Diese Dankbarkeit nährt sich aus dem christlichen Menschenbild, das in jedem Menschen ein Ebenbild Gottes sieht, auch, oder gerade dann, wenn sein Leben von Brüchen, Schuld oder Schmerz gezeichnet ist.</p>
+        </article>
+        <!-- Demut -->
+        <article class="breathe b3 bg-sand rounded-3xl p-8 shadow-card text-left border border-cream">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage-dp/15 text-sage-dp mb-5">
+            <i data-lucide="hand-heart" class="w-6 h-6"></i>
+          </span>
+          <h3 class="font-display text-2xl text-forest mb-2">Demut</h3>
+          <p class="text-muted leading-relaxed">Das Anerkennen Gottes und die Bereitschaft, sich selbst in seinem Licht zu sehen, ist ein Zeichen der Demut. Demütige Menschen erkennen ihre Abhängigkeit von Gott und verstehen ihre Talente als Geschenk: als etwas, das ihnen anvertraut wurde.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Kernbereiche -->
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24">
+    <h2 class="font-display text-3xl md:text-4xl text-forest mb-3">Angebote</h2>
+    <p class="text-muted mb-10 max-w-xl">Drei Wege, auf denen ich Sie begleite: einzeln oder verbunden.</p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <button data-nav="kurt" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
+        <div class="frame h-52">
+          <img data-img="kurt" width="771" height="1080" alt="Tiergestützte Pädagogik mit Therapiebegleithund Kurt" loading="lazy" style="object-position:center 25%"/>
+          <div class="ph"><i data-lucide="dog" class="w-8 h-8"></i><span class="text-sm">Kurt in der Natur</span></div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl text-forest mb-2 group-hover:text-terra transition">Tiergestützte Pädagogik</h3>
+          <p class="text-muted text-sm leading-relaxed">Lernen und Heilen mit tierischer Hilfe: Therapiebegleithund Kurt öffnet Räume für Vertrauen.</p>
+          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+        </div>
+      </button>
+
+      <button data-nav="angebote" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
+        <div class="frame h-52">
+          <img data-img="beratung" width="771" height="1080" alt="Psychosoziale Beratung: Begleitung in Krisen" loading="lazy" style="object-position:center 35%"/>
+          <div class="ph"><i data-lucide="messages-square" class="w-8 h-8"></i><span class="text-sm">Beratungssituation</span></div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl text-forest mb-2 group-hover:text-terra transition">Psychosoziale Beratung</h3>
+          <p class="text-muted text-sm leading-relaxed">Begleitung in Lebenskrisen, Suchtberatung, Angehörigen- und Paargespräche.</p>
+          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+        </div>
+      </button>
+
+      <button data-nav="angebote" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
+        <div class="frame h-52">
+          <img data-img="portrait" width="771" height="1080" alt="Suchtprävention: Aufklärung und Schutz" loading="lazy" style="object-position:center 25%"/>
+          <div class="ph"><i data-lucide="shield-check" class="w-8 h-8"></i><span class="text-sm">Suchtprävention</span></div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl text-forest mb-2 group-hover:text-terra transition">Suchtprävention</h3>
+          <p class="text-muted text-sm leading-relaxed">Früh hinschauen, Bewusstsein schaffen, Schutzfaktoren stärken: für Schulen, Vereine und Familien.</p>
+          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Walk & Talk band -->
+  <div class="bg-forest text-sand">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-20 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="text-terra-sf tracking-[.2em] uppercase text-sm mb-4">Das besondere Angebot</p>
+        <h2 class="font-display text-3xl md:text-4xl leading-tight mb-5">Walk &amp; Talk mit Kurt</h2>
+        <p class="text-sand/80 leading-relaxed text-lg">
+          Beratung in Bewegung an der frischen Luft. Der Blick geht in die weite Landschaft statt aufs Gegenüber,
+          Gedanken und Gefühle kommen ins Fließen, und Kurt wirkt dabei wie ein Eisbrecher, der ganz ohne Worte Nähe schenkt.
+        </p>
+        <button data-nav="kurt" class="mt-8 inline-flex items-center gap-2 bg-sand text-forest px-6 py-3 rounded-full font-medium hover:bg-terra-sf transition">
+          Kurt kennenlernen <i data-lucide="paw-print" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="frame rounded-[2rem] aspect-[5/4] shadow-soft">
+        <img data-img="kurt" width="771" height="1080" alt="Walk & Talk: Beratung beim Gehen in der Natur mit Hund Kurt" loading="lazy" style="object-position:center 30%"/>
+        <div class="ph"><i data-lucide="footprints" class="w-9 h-9"></i><span class="text-sm">Spaziergang am Deich mit Kurt</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final CTA -->
+  <div class="max-w-4xl mx-auto px-5 md:px-8 py-20 md:py-28 text-center">
+    <i data-lucide="sun" class="w-10 h-10 text-terra mx-auto mb-6"></i>
+    <h2 class="font-display text-3xl md:text-4xl text-forest leading-tight">Sie müssen noch nichts erklären. Schreiben Sie mir einfach.</h2>
+    <p class="mt-5 text-muted text-lg max-w-xl mx-auto">
+      Wenn Sie mögen, schreiben Sie mir ein paar Zeilen. Unverbindlich, in Ruhe, ganz in Ihrem Tempo.
+      Ich melde mich herzlich bei Ihnen zurück.
+    </p>
+    <button data-nav="kontakt" class="mt-9 btn-terra px-8 py-4 rounded-full font-medium inline-flex items-center gap-2">
+      Kontakt aufnehmen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </button>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ========================= MEINE HALTUNG ======================= -->
+<!-- ================================================================ -->
+<section id="page-haltung" class="page">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-10">
+    <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Über mich</p>
+    <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight max-w-3xl">
+      Ich bin für Sie da, mit Kompetenz und von Herzen.
+    </h1>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pb-16 grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-5">
+      <div class="frame rounded-[2rem] aspect-[4/5] shadow-soft ring-1 ring-white/50 sticky top-24">
+        <img data-img="portrait" width="771" height="1080" alt="Esther Sluiter, staatlich anerkannte Sozialarbeiterin und -pädagogin" loading="lazy" />
+        <div class="ph"><i data-lucide="user-round" class="w-10 h-10"></i><span class="text-sm font-medium">Esther Sluiter</span></div>
+      </div>
+    </div>
+    <div class="lg:col-span-7 space-y-6 text-lg text-muted leading-relaxed">
+      <p>
+        Mein Name ist <strong class="text-forest font-medium">Esther Sluiter</strong>. Als staatlich anerkannte
+        Sozialarbeiterin und ‑pädagogin sowie erfahrene Suchttherapeutin begleite ich Menschen in Emden auf
+        ihrem Weg: in Krisen, an Wendepunkten und überall dort, wo das Leben schwer wiegt.
+      </p>
+      <!-- TODO: Audiostelle unklar – Formulierung "ich präzisiere meine Arbeit", bitte mit Original-Aufnahme abgleichen und ggf. hier ergänzen. Bewusst nicht frei formuliert. -->
+      <p>
+        In meiner beraterischen Arbeit arbeite ich nach der psychoanalytisch‑interaktionellen Methode.
+        Ziel ist es, verborgene Konflikte, Übertragungen und Gegenübertragungen bewusst zu machen,
+        damit aus alten Mustern neue Handlungsmöglichkeiten wachsen können.
+      </p>
+      <div class="bg-paper/70 border border-cream rounded-3xl p-7">
+        <h2 class="font-display text-2xl text-forest mb-3 flex items-center gap-2">
+          <i data-lucide="book-open" class="w-5 h-5 text-terra"></i> Warum „Tharsei"?
+        </h2>
+        <!-- TODO: Audiostelle unklar – vermutlich Christus-/Zuflucht-Zitat, bitte mit Original-Aufnahme abgleichen und Text ergänzen. Bewusst nicht frei formuliert. -->
+        <p class="text-base">
+          <em>Tharsei</em> (griechisch θάρσει) bedeutet „Sei guten Mutes" oder „Fasse Mut".
+          Es sind Worte des Zuspruchs, die Jesus im Neuen Testament Menschen mitten in ihrer Not schenkt:
+          nicht als Vertröstung, sondern als tragfähige Ermutigung. Genau diese Hoffnung will ich in meine
+          Arbeit tragen: Mut machen, wo Kräfte fehlen, und neuen Mut schenken, wo er verloren gegangen ist.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Achtbarkeit deep dive -->
+  <div class="bg-paper/70 border-y border-cream/70">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24">
+      <div class="max-w-2xl mb-12">
+        <h2 class="font-display text-3xl md:text-4xl text-forest mb-4">Meine Haltung ist Achtbarkeit.</h2>
+        <p class="text-muted text-lg">
+          Laut frühhochdeutschem Wörterbuch „Ansehen, Würde, Wertschätzung, insbesondere von Personen
+          hohen Standes". Im Neudeutschen wird es nicht mehr verwendet. Für mich impliziert dieses Wort
+          drei Haltungen, die in meiner Arbeit eine zentrale Rolle spielen:
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-sand rounded-3xl p-8 border border-cream shadow-card">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage/15 text-sage-dp mb-5"><i data-lucide="eye" class="w-6 h-6"></i></span>
+          <h3 class="font-display text-2xl text-forest mb-2">Achtsamkeit</h3>
+          <p class="text-muted leading-relaxed">im Sinne einer wachen, urteilsfreien Gegenwärtigkeit. Sie ist Ausdruck innerer Bereitschaft, dem anderen wirklich zu begegnen, nicht als Objekt, sondern als von Gott geliebtes Gegenüber wertzuschätzen.</p>
+        </div>
+        <div class="bg-sand rounded-3xl p-8 border border-cream shadow-card">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-terra/15 text-terra mb-5"><i data-lucide="gift" class="w-6 h-6"></i></span>
+          <h3 class="font-display text-2xl text-forest mb-2">Dankbarkeit</h3>
+          <p class="text-muted leading-relaxed">als Haltung, die den anderen als Gabe erkennt, unabhängig von seiner Funktion, seiner Geschichte oder seinen Symptomen. Diese Dankbarkeit nährt sich aus dem christlichen Menschenbild, das in jedem Menschen ein Ebenbild Gottes sieht, auch, oder gerade dann, wenn sein Leben von Brüchen, Schuld oder Schmerz gezeichnet ist.</p>
+        </div>
+        <div class="bg-sand rounded-3xl p-8 border border-cream shadow-card">
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage-dp/15 text-sage-dp mb-5"><i data-lucide="hand-heart" class="w-6 h-6"></i></span>
+          <h3 class="font-display text-2xl text-forest mb-2">Demut</h3>
+          <p class="text-muted leading-relaxed">Das Anerkennen Gottes und die Bereitschaft, sich selbst in seinem Licht zu sehen, ist ein Zeichen der Demut. Demütige Menschen erkennen ihre Abhängigkeit von Gott und verstehen ihre Talente als Geschenk: als etwas, das ihnen anvertraut wurde.</p>
+        </div>
+      </div>
+
+      <blockquote class="mt-14 text-center font-display text-2xl md:text-3xl text-forest italic max-w-3xl mx-auto leading-snug">
+        „Jeder Mensch ist ein beschenktes Geschenk."
+      </blockquote>
+
+      <div class="text-center mt-10">
+        <button data-nav="kontakt" class="btn-terra px-7 py-3.5 rounded-full font-medium inline-flex items-center gap-2">
+          Erstgespräch anfragen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ======================= ANGEBOTE & ABLAUF ===================== -->
+<!-- ================================================================ -->
+<section id="page-angebote" class="page">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-8">
+    <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Angebote &amp; Ablauf</p>
+    <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight max-w-3xl">
+      Begleitung, die sich Ihrem Leben anpasst, nicht umgekehrt.
+    </h1>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pb-10">
+    <div class="grid md:grid-cols-3 gap-6" id="offerGrid">
+      <!-- Tiergestützt -->
+      <article data-cat="tiergestuetzt" class="offer bg-sand rounded-3xl p-7 border border-cream shadow-card">
+        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage-dp/15 text-sage-dp mb-4"><i data-lucide="dog" class="w-5 h-5"></i></span>
+        <h3 class="font-display text-xl text-forest mb-3">Tiergestützte Pädagogik</h3>
+        <ul class="text-muted text-[15px] space-y-1.5">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Tierschutz &amp; Tierwohl stehen an erster Stelle</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Zertifizierte Pädagogik- und Therapiebegleitung, Rezertifizierung alle 2 Jahre</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Mitglied bei Therapiebegleithunde Deutschland e.V.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Einzel-, Gruppensettings &amp; Walk &amp; Talk in der Natur</li>
+        </ul>
+        <button data-nav="kurt" class="mt-4 text-terra text-sm font-medium inline-flex items-center gap-1">Mehr zu Kurt <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+      </article>
+      <!-- Beratung -->
+      <article data-cat="beratung" class="offer bg-sand rounded-3xl p-7 border border-cream shadow-card">
+        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage/15 text-sage-dp mb-4"><i data-lucide="messages-square" class="w-5 h-5"></i></span>
+        <h3 class="font-display text-xl text-forest mb-3">Psychosoziale Beratung</h3>
+        <ul class="text-muted text-[15px] space-y-1.5">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Beratung in Lebenskrisen</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Suchtberatung</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Angehörigengespräche</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Paargespräche</li>
+        </ul>
+      </article>
+      <!-- Prävention -->
+      <article data-cat="praevention" class="offer bg-sand rounded-3xl p-7 border border-cream shadow-card">
+        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-terra/15 text-terra mb-4"><i data-lucide="shield-check" class="w-5 h-5"></i></span>
+        <h3 class="font-display text-xl text-forest mb-3">Suchtprävention</h3>
+        <ul class="text-muted text-[15px] space-y-1.5">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Schulen: Workshops &amp; Projekttage</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Vereine &amp; Institutionen: Impulsvorträge</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Einzelpersonen &amp; Familien</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Auf Wunsch tiergestützt mit Kurt</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+
+  <!-- Zitat: Suchtprävention -->
+  <div class="max-w-3xl mx-auto px-5 md:px-8 pt-12 md:pt-16 pb-6 text-center">
+    <span class="block font-display text-6xl md:text-7xl leading-none text-terra mb-3" aria-hidden="true">„</span>
+    <blockquote class="font-display text-2xl md:text-3xl text-forest leading-snug">
+      Sucht kommt nicht von Drogen, sondern von betäubten Träumen, verdrängten Sehnsüchten,
+      verschluckten Tränen und erfrorenen Gefühlen.
+    </blockquote>
+    <span class="block font-display text-6xl md:text-7xl leading-none text-terra mt-3" aria-hidden="true">"</span>
+    <p class="mt-6 text-sm tracking-[.2em] uppercase text-muted">Bilstein &amp; Voigt-Rubio</p>
+  </div>
+
+  <!-- Detail: Prävention narrative -->
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-8">
+    <div class="bg-forest text-sand rounded-3xl p-8 md:p-12">
+      <h2 class="font-display text-2xl md:text-3xl mb-4">Sucht beginnt leise.</h2>
+      <p class="text-sand/85 leading-relaxed max-w-3xl">
+        Selten beginnt sie mit einer Entscheidung, oft fast unbemerkt. Umso wichtiger ist es, früh hinzuschauen,
+        Bewusstsein zu schaffen und Schutzfaktoren zu stärken. Im Mittelpunkt steht dabei nicht die Angst vor der Sucht,
+        sondern die Stärkung von Selbstwirksamkeit, Beziehungsfähigkeit und innerer Widerstandskraft.
+      </p>
+    </div>
+  </div>
+
+  <!-- Ablauf & Kosten Accordion -->
+  <div class="max-w-3xl mx-auto px-5 md:px-8 py-12 md:py-16">
+    <h2 class="font-display text-3xl text-forest mb-8 text-center">Ablauf &amp; Kosten</h2>
+
+    <div class="space-y-3">
+      <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+          <span class="font-display text-lg text-forest">Wie läuft die Kontaktaufnahme ab?</span>
+          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+        </button>
+        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
+          Ganz einfach über das <button data-nav="kontakt" class="text-terra underline underline-offset-2 font-medium">Kontaktformular</button>.
+          Schreiben Sie mir ein paar Zeilen zu Ihrem Anliegen. Ich melde mich herzlich zurück und wir finden gemeinsam einen ersten Termin.
+        </div></div>
+      </div>
+
+      <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+          <span class="font-display text-lg text-forest">Wie sieht das erste Gespräch aus?</span>
+          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+        </button>
+        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
+          Der erste Termin dient dem Kennenlernen und einem umfassenden Einblick in den Beratungsprozess.
+          Ich nehme mir Zeit, Ihre Situation, Ihre Herausforderungen und Ziele in Ruhe zu besprechen.
+          Daraus ergibt sich ein klares Bild und mögliche Schwerpunkte.
+        </div></div>
+      </div>
+
+      <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+          <span class="font-display text-lg text-forest">Wie viele Sitzungen sind üblich?</span>
+          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+        </button>
+        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
+          Das ergibt sich flexibel aus den Gesprächen und Ihrem individuellen Bedarf.
+          Sie entscheiden eigenständig über Frequenz und Dauer der weiteren Beratung. Es gibt kein starres Programm.
+        </div></div>
+      </div>
+
+      <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+          <span class="font-display text-lg text-forest">Was kostet die Beratung?</span>
+          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+        </button>
+        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed space-y-3">
+          <p>Die Beratung ist eine Selbstzahler‑Leistung; die Kosten werden nicht von den gesetzlichen Krankenkassen übernommen.</p>
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><i data-lucide="clock" class="w-4 h-4 text-terra"></i> Einzelgespräch · 50 Min · <strong>80 €</strong></span>
+            <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><i data-lucide="users" class="w-4 h-4 text-terra"></i> Paargespräch · 90 Min · <strong>120 €</strong></span>
+          </div>
+          <p>Bezahlt werden kann per PayPal, Sofortüberweisung oder vor Ort mit Karte.</p>
+          <p>Ich bin Mitglied im christlichen Netzwerk <strong class="text-forest">leben:helfen e.V.</strong> Sollte es Ihnen nicht möglich sein, die Kosten zu tragen, schreiben Sie mich an. Unter bestimmten Voraussetzungen finden wir gemeinsam eine Lösung.</p>
+          <p>Als Selbstzahler:in genießen Sie volle Anonymität: Ihre Beratung wird nicht in öffentlichen Datenbanken erfasst, ein Schutz z. B. bei Verbeamtung oder Lebensversicherungen.</p>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Walk & Talk special -->
+  <div class="bg-paper/70 border-y border-cream/70">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 grid lg:grid-cols-2 gap-10 items-center">
+      <div class="frame rounded-[2rem] aspect-[5/4] shadow-soft order-2 lg:order-1">
+        <img data-img="kurt" width="771" height="1080" alt="Walk & Talk in der ostfriesischen Natur" loading="lazy"/>
+        <div class="ph"><i data-lucide="footprints" class="w-9 h-9"></i><span class="text-sm">Weg durch die Landschaft</span></div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Beratung in Bewegung</p>
+        <h2 class="font-display text-3xl text-forest mb-4">Warum „Walk &amp; Talk"?</h2>
+        <p class="text-muted leading-relaxed text-lg">
+          In einem geschlossenen Raum mit starrer Sitzordnung fällt Sprechen manchmal schwer.
+          Beim Gehen in der Natur entsteht eine andere Atmosphäre: Bewegung bringt Körper, Gedanken und Gefühle
+          in Fluss, der Blick richtet sich in die Landschaft statt aufs Gegenüber. Das nimmt Druck heraus und öffnet Raum.
+        </p>
+        <button data-nav="kontakt" class="mt-7 btn-ghost px-6 py-3 rounded-full font-medium">Termin anfragen</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ===================== TIERGESTÜTZTE / KURT ==================== -->
+<!-- ================================================================ -->
+<section id="page-kurt" class="page">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-12 grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-6">
+      <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4 inline-flex items-center gap-2"><i data-lucide="paw-print" class="w-4 h-4"></i> Tiergestützte Pädagogik</p>
+      <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight">Darf ich vorstellen: <span class="italic text-terra">Kurt</span>.</h1>
+      <p class="mt-6 text-lg text-muted leading-relaxed">
+        Tiere begegnen uns vorurteilsfrei: sie urteilen nicht, sie werten nicht. Genau darin liegt ihre besondere Stärke.
+        Mein Therapiebegleithund Kurt öffnet einen Raum für neue Erfahrungen, Beziehung, Vertrauen und Selbstwirksamkeit.
+      </p>
+    </div>
+    <div class="lg:col-span-6">
+      <div class="frame rounded-[2rem] aspect-[4/3] shadow-soft ring-1 ring-white/50">
+        <img data-img="kurt" width="771" height="1080" alt="Therapiebegleithund Kurt" loading="lazy"/>
+        <div class="ph"><i data-lucide="dog" class="w-10 h-10"></i><span class="text-sm font-medium">Porträt: Hund Kurt</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vertrauens- & Zertifikats-Leiste -->
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pb-12 -mt-4">
+    <div class="flex flex-wrap gap-3">
+      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><i data-lucide="heart-handshake" class="w-4 h-4 text-sage-dp"></i> Tierschutz &amp; Tierwohl an erster Stelle</span>
+      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><i data-lucide="badge-check" class="w-4 h-4 text-terra"></i> Zertifizierte Pädagogik- und Therapiebegleitung, Rezertifizierung alle 2 Jahre</span>
+      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><i data-lucide="paw-print" class="w-4 h-4 text-sage-dp"></i> Mitglied bei Therapiebegleithunde Deutschland e.V.</span>
+      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><i data-lucide="users-round" class="w-4 h-4 text-terra"></i> Mitglied im Verein KiDeTi, Kinder, Demenz und Tiere e.V.</span>
+    </div>
+  </div>
+
+  <!-- Wirkungsweise -->
+  <div class="bg-paper/70 border-y border-cream/70">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-16">
+      <h2 class="font-display text-3xl text-forest mb-3">Warum Hunde Brückenbauer für die Seele sind</h2>
+      <p class="text-muted max-w-2xl mb-10 text-lg">
+        Ob im Einzel- oder Gruppensetting: Kurt begegnet jedem Menschen mit Offenheit und einer Prise Neugier.
+        Besonders Kinder und Jugendliche profitieren von seiner einfühlsamen, klaren Art.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage/15 text-sage-dp mb-4"><i data-lucide="unlock" class="w-5 h-5"></i></span>
+          <h3 class="font-display text-lg text-forest mb-2">Türöffner</h3>
+          <p class="text-muted text-[15px] leading-relaxed">Kurts Anwesenheit senkt Anspannung: viele Menschen fühlen sich sicherer, entspannter und öffnen sich leichter.</p>
+        </div>
+        <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-terra/15 text-terra mb-4"><i data-lucide="sparkles" class="w-5 h-5"></i></span>
+          <h3 class="font-display text-lg text-forest mb-2">Selbstwirksamkeit</h3>
+          <p class="text-muted text-[15px] leading-relaxed">In der Begegnung mit dem Tier erleben Menschen Wirkung, Verantwortung und gelingende Beziehung, ganz unmittelbar.</p>
+        </div>
+        <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage-dp/15 text-sage-dp mb-4"><i data-lucide="heart" class="w-5 h-5"></i></span>
+          <h3 class="font-display text-lg text-forest mb-2">Trost &amp; Nähe</h3>
+          <p class="text-muted text-[15px] leading-relaxed">Kurt schenkt Nähe, ohne zu fordern. Seine Gegenwart kann Trost spenden und emotionale Prozesse behutsam begleiten.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Walk & Talk detail -->
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 grid lg:grid-cols-2 gap-10 items-center">
+    <div>
+      <h2 class="font-display text-3xl text-forest mb-4">Walk &amp; Talk mit Kurt</h2>
+      <p class="text-muted leading-relaxed text-lg">
+        Mit seiner lebendigen, freundlichen Art schafft Kurt Nähe, ohne zu fordern. Er wirkt wie ein Eisbrecher
+        und öffnet oft den Raum für tiefere Gespräche. Unsere Walk-&-Talk-Termine sind flexibel und richten sich
+        ganz nach Ihren Bedürfnissen. Schreiben Sie mich gerne an!
+      </p>
+      <button data-nav="kontakt" class="mt-7 btn-terra px-7 py-3.5 rounded-full font-medium inline-flex items-center gap-2">
+        Walk &amp; Talk anfragen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div class="frame rounded-[2rem] aspect-[5/4] shadow-soft" style="background:#FBF8F1">
+      <img data-img="mindful" width="1024" height="850" class="contain" alt="Mind Full vs. Mindful: vom vollen Kopf zur inneren Weite" loading="lazy"/>
+      <div class="ph"><i data-lucide="leaf" class="w-9 h-9"></i><span class="text-sm">Illustration: Mind Full vs. Mindful</span></div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pb-20">
+    <h3 class="font-display text-2xl text-forest mb-6">Eindrücke</h3>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="frame rounded-2xl aspect-square shadow-card"><img data-img="kurt" width="771" height="1080" alt="Kurt am Deich" loading="lazy"/><div class="ph"><i data-lucide="image" class="w-7 h-7"></i><span class="text-xs">Natur &amp; Hund</span></div></div>
+      <div class="frame rounded-2xl aspect-square shadow-card"><img data-img="portrait" width="771" height="1080" alt="Esther Sluiter in der Praxis" loading="lazy"/><div class="ph"><i data-lucide="image" class="w-7 h-7"></i><span class="text-xs">Esther Sluiter</span></div></div>
+      <div class="frame rounded-2xl aspect-square shadow-card"><img data-img="beratung" width="771" height="1080" alt="Im Gespräch" loading="lazy"/><div class="ph"><i data-lucide="image" class="w-7 h-7"></i><span class="text-xs">Im Gespräch</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ========================== KONTAKT ============================ -->
+<!-- ================================================================ -->
+<section id="page-kontakt" class="page">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-12">
+    <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Kontakt</p>
+    <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight max-w-2xl">Schreiben Sie mir, in Ruhe, in Ihrem Tempo.</h1>
+    <p class="mt-5 text-muted text-lg max-w-xl">
+      Am einfachsten erreichen Sie mich über das Formular. Ich lese jede Nachricht persönlich und melde mich bei Ihnen zurück.
+    </p>
+
+    <div class="mt-6 bg-terra text-sand rounded-2xl px-5 py-4 shadow-soft flex items-center gap-4 max-w-2xl">
+      <span class="grid place-items-center w-10 h-10 rounded-xl bg-sand/15 shrink-0"><i data-lucide="sparkles" class="w-5 h-5"></i></span>
+      <div>
+        <h2 class="font-display text-lg mb-0.5">20 Minuten kostenloses Erstgespräch</h2>
+        <p class="text-sand/90 text-sm leading-snug">
+          Kurz und unverbindlich. Wählen Sie im Formular einfach „Kostenloses Kennenlerngespräch" aus.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pb-8 grid lg:grid-cols-12 gap-8 items-start">
+    <!-- Form -->
+    <div class="lg:col-span-7">
+      <div id="formCard" class="bg-sand rounded-3xl p-6 md:p-9 border border-cream shadow-card">
+        <div class="space-y-5" id="contactForm">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="c-name" class="block text-sm text-forest mb-1.5 font-medium">Name</label>
+              <input id="c-name" type="text" autocomplete="name" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="Ihr Name" />
+            </div>
+            <div>
+              <label for="c-mail" class="block text-sm text-forest mb-1.5 font-medium">E-Mail</label>
+              <input id="c-mail" type="email" autocomplete="email" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="name@beispiel.de" />
+            </div>
+          </div>
+          <div class="grid md:grid-cols-2 gap-5">
+            <div>
+              <label for="c-tel" class="block text-sm text-forest mb-1.5 font-medium">Telefon <span class="text-muted font-normal">(optional)</span></label>
+              <input id="c-tel" type="tel" autocomplete="tel" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="Für einen Rückruf" />
+            </div>
+            <div>
+              <label for="c-anliegen" class="block text-sm text-forest mb-1.5 font-medium">Mein Anliegen</label>
+              <select id="c-anliegen" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp">
+                <option>Kostenloses Kennenlerngespräch</option>
+                <option>Psychosoziale Beratung</option>
+                <option>Suchtprävention</option>
+                <option>Tiergestützte Pädagogik</option>
+                <option>Sonstiges</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label for="c-text" class="block text-sm text-forest mb-1.5 font-medium">Ihre Nachricht</label>
+            <textarea id="c-text" rows="5" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp resize-none" placeholder="Erzählen Sie mir in ein paar Worten, worum es geht …"></textarea>
+          </div>
+          <label class="flex items-start gap-3 text-sm text-muted">
+            <input type="checkbox" id="c-consent" class="mt-1 accent-sage-dp w-4 h-4" />
+            <span>Ich habe die <a href="#" data-nav="datenschutz" class="text-terra underline underline-offset-2">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.</span>
+          </label>
+          <button id="submitBtn" class="btn-terra w-full sm:w-auto px-8 py-3.5 rounded-full font-medium inline-flex items-center justify-center gap-2">
+            Nachricht senden <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Confirmation -->
+        <div id="formSuccess" class="hidden text-center py-10">
+          <span class="grid place-items-center w-16 h-16 rounded-full bg-sage/20 text-sage-dp mx-auto mb-5">
+            <i data-lucide="check" class="w-8 h-8"></i>
+          </span>
+          <h3 class="font-display text-2xl text-forest mb-3">Von Herzen: Danke.</h3>
+          <p class="text-muted max-w-md mx-auto">
+            Ihre Nachricht ist angekommen. Ich lese sie in Ruhe und melde mich so bald wie möglich
+            persönlich bei Ihnen zurück. Fassen Sie Mut, der erste Schritt ist getan.
+          </p>
+          <button id="resetBtn" class="mt-6 btn-ghost px-6 py-2.5 rounded-full text-sm font-medium">Neue Nachricht schreiben</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aside: Standort & Sprechzeiten (no phone / no email) -->
+    <aside class="lg:col-span-5 space-y-5">
+      <div class="bg-forest text-sand rounded-3xl p-7">
+        <h3 class="font-display text-xl mb-4 flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-terra-sf"></i> Standort</h3>
+        <p class="text-sand/85 leading-relaxed">Kloster-Langen-Straße 30<br>26723 Emden<br>Ostfriesland</p>
+        <div class="h-px bg-sand/15 my-5"></div>
+        <h3 class="font-display text-xl mb-3 flex items-center gap-2"><i data-lucide="calendar-clock" class="w-5 h-5 text-terra-sf"></i> Sprechzeiten</h3>
+        <p class="text-sand/85 leading-relaxed">Termine nach persönlicher Vereinbarung.<br>Walk-&-Talk-Termine flexibel, ganz nach Ihren Bedürfnissen.</p>
+      </div>
+      <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
+        <p class="text-muted leading-relaxed flex gap-3">
+          <i data-lucide="lock" class="w-5 h-5 text-sage-dp shrink-0 mt-0.5"></i>
+          <span>Alles, was Sie mir anvertrauen, wird vertraulich behandelt. Als Selbstzahler:in genießen Sie volle Anonymität.</span>
+        </p>
+      </div>
+    </aside>
+  </div>
+  <div class="max-w-6xl mx-auto px-5 md:px-8 pb-20">
+    <div class="bg-sand rounded-3xl border border-cream shadow-card overflow-hidden">
+      <div class="flex items-center gap-2 px-6 pt-5 pb-3 text-forest">
+        <i data-lucide="map-pin" class="w-5 h-5 text-terra"></i>
+        <span class="font-display text-lg">So finden Sie mich</span>
+      </div>
+      <div id="mapConsent" class="px-6 pb-6">
+        <p class="text-muted text-sm mb-4 max-w-xl">
+          Beim Laden der Karte wird eine Verbindung zu Google Maps hergestellt und Ihre IP-Adresse
+          an Google übermittelt. Weitere Informationen dazu finden Sie in unserer
+          <a href="#" data-nav="datenschutz" class="text-terra underline underline-offset-2">Datenschutzerklärung</a>.
+        </p>
+        <button id="loadMapBtn" class="btn-ghost px-6 py-3 rounded-full font-medium inline-flex items-center gap-2">
+          <i data-lucide="map" class="w-4 h-4"></i> Karte laden
+        </button>
+      </div>
+      <div id="mapFrame" class="hidden"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ========================== IMPRESSUM ============================ -->
+<!-- ================================================================ -->
+<!-- Inhalte orientiert an den realen Angaben auf tharsei.de. Bitte vor Livegang juristisch prüfen lassen. -->
+<section id="page-impressum" class="page">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20">
+    <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Impressum</p>
+    <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight mb-10">Angaben gemäß § 5 TMG</h1>
+
+    <div class="space-y-8 text-muted leading-relaxed">
+      <div>
+        <h2 class="font-display text-xl text-forest mb-2">Diensteanbieterin</h2>
+        <p>
+          Esther Sluiter<br>
+          Psychosoziale Beratung · Suchtprävention · Tiergestützte Pädagogik<br>
+          Kloster-Langen-Straße 30<br>26723 Emden
+        </p>
+      </div>
+      <div>
+        <h2 class="font-display text-xl text-forest mb-2">Kontakt</h2>
+        <p>
+          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra underline underline-offset-2">info@tharsei.de</a>
+        </p>
+      </div>
+      <div>
+        <h2 class="font-display text-xl text-forest mb-2">Berufsbezeichnung &amp; Qualifikationen</h2>
+        <ul class="space-y-1.5">
+          <li>Staatlich anerkannte Sozialarbeiterin/-pädagogin (B.A.)</li>
+          <li>Soziale Arbeit und Gesundheit (Master of Arts)</li>
+          <li>Suchttherapeutin (GVS, Psychoanalytisch-Interaktionelle Methode)</li>
+        </ul>
+        <p class="mt-2 text-sm">Verliehen in: Deutschland</p>
+      </div>
+      <div>
+        <h2 class="font-display text-xl text-forest mb-2">Streitschlichtung</h2>
+        <p>
+          Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+      </div>
+      <div>
+        <h2 class="font-display text-xl text-forest mb-2">Zentrale Kontaktstelle nach dem Digital Services Act (DSA)</h2>
+        <p>
+          Telefon: <a href="tel:+4917620469554" class="text-terra underline underline-offset-2">0176 2046 9554</a><br>
+          Für den Kontakt zur Verfügung stehende Sprache: Deutsch.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ -->
+<!-- ===================== DATENSCHUTZERKLÄRUNG ====================== -->
+<!-- ================================================================ -->
+<!-- Inhalte orientiert an den realen Angaben auf tharsei.de, ergänzt um Standard-Abschnitte (Google Maps, Cookies, SSL). Bitte vor Livegang juristisch prüfen lassen. -->
+<section id="page-datenschutz" class="page">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20">
+    <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Datenschutz</p>
+    <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight mb-10">Datenschutzerklärung</h1>
+
+    <div class="space-y-10 text-muted leading-relaxed">
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Verantwortliche Stelle</h2>
+        <p>
+          Esther Sluiter, Kloster-Langen-Straße 30, 26723 Emden.<br>
+          Telefon: <a href="tel:+4917623226117" class="text-terra underline underline-offset-2">+49 176 23 22 61 17</a><br>
+          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra underline underline-offset-2">info@tharsei.de</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Ihre Rechte</h2>
+        <p>
+          Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten,
+          deren Herkunft und Empfänger sowie den Zweck der Datenverarbeitung. Außerdem steht Ihnen ein Recht auf
+          Berichtigung, Löschung oder Einschränkung der Verarbeitung dieser Daten zu. Bei Fragen dazu können Sie
+          sich jederzeit über die oben genannten Kontaktdaten an mich wenden. Ihnen steht zudem ein Beschwerderecht
+          bei der zuständigen Aufsichtsbehörde zu.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Kontaktformular</h2>
+        <p>
+          Wenn Sie mir per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular
+          inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von
+          Anschlussfragen bei mir gespeichert. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1
+          lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung
+          vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf meinem
+          berechtigten Interesse an der effektiven Bearbeitung der an mich gerichteten Anfragen (Art. 6 Abs. 1 lit. f
+          DSGVO) oder auf Ihrer Einwilligung, sofern diese abgefragt wurde.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Hosting</h2>
+        <p>
+          Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern meines Hosters
+          gespeichert: Samuel Sluiter, Telefon: <a href="tel:+4917620469554" class="text-terra underline underline-offset-2">0176 2046 9554</a>.
+          Mit dem Hoster besteht ein Vertrag zur Auftragsverarbeitung.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Cookies</h2>
+        <p>
+          Diese Website verwendet teilweise Cookies. Session-Cookies werden nach Ende Ihres Besuchs automatisch
+          gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine
+          automatische Löschung durch Ihren Webbrowser erfolgt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
+          beziehungsweise, sofern eine Einwilligung abgefragt wurde, § 25 Abs. 1 TDDDG.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Google Maps</h2>
+        <p>
+          Auf der Kontaktseite biete ich die Möglichkeit, eine Karte von Google Maps zu laden, um Ihnen die Anfahrt
+          zu erleichtern. Die Karte wird erst nach Ihrer ausdrücklichen Zustimmung per Klick auf „Karte laden"
+          eingebunden. Erst dann wird eine Verbindung zu Servern von Google LLC in den USA hergestellt und dabei
+          unter anderem Ihre IP-Adresse übermittelt. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
+          DSGVO). Weitere Informationen finden Sie in den
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-terra underline underline-offset-2">Datenschutzhinweisen von Google</a>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">SSL-/TLS-Verschlüsselung</h2>
+        <p>
+          Diese Seite nutzt aus Sicherheitsgründen eine SSL-/TLS-Verschlüsselung zum Schutz der Übertragung
+          vertraulicher Inhalte, wie zum Beispiel Anfragen, die Sie mir über das Kontaktformular zusenden.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="bg-forest text-sand/80">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-14">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img data-img="logo" width="199" height="200" alt="Tharsei" class="h-14 w-auto" style="filter:brightness(0) invert(1);opacity:.92" />
+        </div>
+        <p class="text-sand/70 leading-relaxed max-w-sm">Sei guten Mutes. Fasse Mut. Psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden.</p>
+      </div>
+
+      <nav class="md:col-span-3">
+        <h4 class="text-sand font-medium mb-4">Navigation</h4>
+        <ul class="space-y-2.5 text-sand/70">
+          <li><a href="#" data-nav="home" class="hover:text-terra-sf transition">Start</a></li>
+          <li><a href="#" data-nav="haltung" class="hover:text-terra-sf transition">Meine Haltung</a></li>
+          <li><a href="#" data-nav="angebote" class="hover:text-terra-sf transition">Angebote &amp; Ablauf</a></li>
+          <li><a href="#" data-nav="kurt" class="hover:text-terra-sf transition">Tiergestützte Pädagogik</a></li>
+          <li><a href="#" data-nav="kontakt" class="hover:text-terra-sf transition">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div class="md:col-span-4">
+        <h4 class="text-sand font-medium mb-4">Netzwerk &amp; Mitgliedschaften</h4>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1]"><img data-img="lLeben" width="300" height="147" alt="leben:helfen, Christliche Beratung e.V." class="max-h-full w-auto object-contain"/></div>
+          <div class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1]"><img data-img="lTbdev" width="300" height="147" alt="Therapiebegleithunde Deutschland e.V." class="max-h-full w-auto object-contain"/></div>
+          <div class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1]"><img data-img="lMittt" width="300" height="147" alt="Münsteraner Institut für therapeutische Fortbildung und tiergestützte Therapie" class="max-h-full w-auto object-contain"/></div>
+          <div class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1]"><img data-img="lKideti" width="300" height="147" alt="Kinder, Demenz und Tiere e.V." class="max-h-full w-auto object-contain"/></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-px bg-sand/15 my-9"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-sand/60">
+      <p>© 2026 Tharsei · Esther Sluiter</p>
+      <div class="flex items-center gap-6">
+        <a href="#" data-nav="impressum" class="hover:text-terra-sf transition">Impressum</a>
+        <a href="#" data-nav="datenschutz" class="hover:text-terra-sf transition">Datenschutzerklärung</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>window.__IMGS={"mindful": "images/mindful.jpg", "lTbdev": "images/lTbdev.jpg", "beratung": "images/beratung.jpg", "portrait": "images/portrait.jpg", "kurt": "images/kurt.jpg", "logo": "images/logo.png", "lLeben": "images/lLeben.jpg", "lMittt": "images/lMittt.jpg", "lKideti": "images/lKideti.jpg"};(function(){document.querySelectorAll("[data-img]").forEach(function(el){var k=el.getAttribute("data-img");var s=window.__IMGS[k];if(!s)return;if(el.tagName==="IMG"){el.src=s;}else{el.style.backgroundImage="url("+s+")";el.style.backgroundSize="cover";el.style.backgroundPosition="center";}});})();</script>
+<script>
+(function () {
+  /* ---------- image fallback: show placeholder if a real photo can't load ---------- */
+  document.querySelectorAll('.frame img').forEach(function (img) {
+    img.addEventListener('error', function () { img.setAttribute('data-broken', '1'); });
+    // if already failed before listener attached
+    if (img.complete && img.naturalWidth === 0) img.setAttribute('data-broken', '1');
+  });
+
+  /* ---------- SPA routing ---------- */
+  var pages = {
+    home:        document.getElementById('page-home'),
+    haltung:     document.getElementById('page-haltung'),
+    angebote:    document.getElementById('page-angebote'),
+    kurt:        document.getElementById('page-kurt'),
+    kontakt:     document.getElementById('page-kontakt'),
+    impressum:   document.getElementById('page-impressum'),
+    datenschutz: document.getElementById('page-datenschutz'),
+  };
+  var navLinks = document.querySelectorAll('.nav-link');
+
+  function go(name) {
+    if (!pages[name]) name = 'home';
+    Object.keys(pages).forEach(function (k) {
+      pages[k].classList.toggle('active', k === name);
+    });
+    navLinks.forEach(function (l) {
+      l.classList.toggle('current', l.getAttribute('data-nav') === name);
+    });
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    closeMenu();
+    if (window.lucide) lucide.createIcons();
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-nav]');
+    if (!t) return;
+    e.preventDefault();
+    go(t.getAttribute('data-nav'));
+  });
+
+  /* ---------- mobile menu ---------- */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  function openMenu()  { menu.classList.remove('hidden-menu'); burger.setAttribute('aria-expanded', 'true'); burger.querySelector('[data-lucide]')?.setAttribute('data-lucide','x'); if(window.lucide) lucide.createIcons(); }
+  function closeMenu() { menu.classList.add('hidden-menu'); burger.setAttribute('aria-expanded', 'false'); var i = burger.querySelector('[data-lucide]'); if(i){ i.setAttribute('data-lucide','menu'); if(window.lucide) lucide.createIcons(); } }
+  burger.addEventListener('click', function () {
+    if (menu.classList.contains('hidden-menu')) openMenu(); else closeMenu();
+  });
+
+  /* ---------- accordion ---------- */
+  document.querySelectorAll('.acc-head').forEach(function (head) {
+    head.addEventListener('click', function () {
+      var item = head.closest('.acc-item');
+      var isOpen = item.classList.contains('open');
+      item.closest('.space-y-3')?.querySelectorAll('.acc-item.open').forEach(function (o) { o.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ---------- Google Maps click-to-consent ---------- */
+  var loadMapBtn = document.getElementById('loadMapBtn');
+  var mapConsent = document.getElementById('mapConsent');
+  var mapFrame = document.getElementById('mapFrame');
+  if (loadMapBtn) {
+    loadMapBtn.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.title = 'Standort Tharsei, Kloster-Langen-Straße 30, 26723 Emden';
+      iframe.src = 'https://maps.google.com/maps?q=Kloster-Langen-Stra%C3%9Fe%2030%2C%2026723%20Emden&z=15&output=embed';
+      iframe.width = '100%';
+      iframe.height = '380';
+      iframe.style.border = '0';
+      iframe.style.display = 'block';
+      iframe.style.filter = 'saturate(.9)';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.allowFullscreen = true;
+      mapFrame.appendChild(iframe);
+      mapFrame.classList.remove('hidden');
+      mapConsent.classList.add('hidden');
+    });
+  }
+
+  /* ---------- contact form (simulated) ---------- */
+  var submitBtn = document.getElementById('submitBtn');
+  var formInner = document.getElementById('contactForm');
+  var success = document.getElementById('formSuccess');
+  var resetBtn = document.getElementById('resetBtn');
+
+  submitBtn.addEventListener('click', function () {
+    var name = document.getElementById('c-name').value.trim();
+    var mail = document.getElementById('c-mail').value.trim();
+    var consent = document.getElementById('c-consent').checked;
+    // gentle inline validation
+    [['c-name', name], ['c-mail', mail]].forEach(function (pair) {
+      var el = document.getElementById(pair[0]);
+      el.style.borderColor = pair[1] ? '' : '#C0774E';
+    });
+    var consentBox = document.getElementById('c-consent');
+    consentBox.style.outline = consent ? '' : '2px solid #C0774E';
+    if (!name || !mail || !consent) return;
+
+    formInner.classList.add('hidden');
+    success.classList.remove('hidden');
+    if (window.lucide) lucide.createIcons();
+    window.scrollTo({ top: document.getElementById('page-kontakt').offsetTop - 40, behavior: 'smooth' });
+  });
+
+  resetBtn.addEventListener('click', function () {
+    ['c-name','c-mail','c-tel','c-text'].forEach(function(id){ document.getElementById(id).value=''; });
+    document.getElementById('c-consent').checked = false;
+    success.classList.add('hidden');
+    formInner.classList.remove('hidden');
+    if (window.lucide) lucide.createIcons();
+  });
+
+  /* ---------- init ---------- */
+  if (window.lucide) lucide.createIcons();
+})();
+</script>
+</body>
+</html>
