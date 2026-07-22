@@ -1162,10 +1162,10 @@
     data.set('message', text);
     data.set('_subject', 'Neue Nachricht über das Kontaktformular: Tharsei');
     data.set('_template', 'table');
-    data.set('_cc', 'esther.sluiter@web.de');
+    data.set('_cc', 'info@tharsei.de');
     data.set('_captcha', 'false');
 
-    fetch('https://formsubmit.co/ajax/info@tharsei.de', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: data.toString() })
+    fetch('https://formsubmit.co/ajax/esther.sluiter@web.de', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: data.toString() })
       .then(function (res) { return res.json(); })
       .then(function (json) {
         submitBtn.disabled = false;
