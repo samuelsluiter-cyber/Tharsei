@@ -724,9 +724,9 @@
   <div class="max-w-6xl mx-auto px-5 md:px-8 pb-20">
     <h3 class="font-display text-2xl text-forest mb-6">Eindrücke</h3>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <div class="frame rounded-2xl aspect-square shadow-card"><img data-img="kurt" width="771" height="1080" alt="Kurt am Deich" loading="lazy"/><div class="ph"><i data-lucide="image" class="w-7 h-7"></i><span class="text-xs">Natur &amp; Hund</span></div></div>
-      <div class="frame rounded-2xl aspect-square shadow-card"><img data-img="portrait" width="771" height="1080" alt="Esther Sluiter in der Praxis" loading="lazy" style="object-position:center 12%"/><div class="ph"><i data-lucide="image" class="w-7 h-7"></i><span class="text-xs">Esther Sluiter</span></div></div>
-      <div class="frame rounded-2xl aspect-square shadow-card"><img data-img="beratung" width="771" height="1080" alt="Im Gespräch" loading="lazy"/><div class="ph"><i data-lucide="image" class="w-7 h-7"></i><span class="text-xs">Im Gespräch</span></div></div>
+      <div class="frame rounded-2xl aspect-square shadow-card" data-img="kurt" role="img" aria-label="Kurt am Deich"></div>
+      <div class="frame rounded-2xl aspect-square shadow-card" data-img="portrait" role="img" aria-label="Esther Sluiter in der Praxis" style="background-position:center 12%"></div>
+      <div class="frame rounded-2xl aspect-square shadow-card" data-img="beratung" role="img" aria-label="Im Gespräch"></div>
     </div>
   </div>
 </section>
@@ -1032,7 +1032,7 @@
   </div>
 </footer>
 
-<script>window.__IMGS={"mindful": "images/mindful.jpg", "lTbdev": "images/lTbdev.jpg", "beratung": "images/beratung.jpg", "portrait": "images/portrait.jpg", "kurt": "images/kurt.jpg", "logo": "images/logo.png", "lLeben": "images/lLeben.jpg", "lMittt": "images/lMittt.jpg", "lKideti": "images/lKideti.jpg"};(function(){document.querySelectorAll("[data-img]").forEach(function(el){var k=el.getAttribute("data-img");var s=window.__IMGS[k];if(!s)return;if(el.tagName==="IMG"){el.src=s;}else{el.style.backgroundImage="url("+s+")";el.style.backgroundSize="cover";el.style.backgroundPosition="center";}});})();</script>
+<script>window.__IMGS={"mindful": "images/mindful.jpg", "lTbdev": "images/lTbdev.jpg", "beratung": "images/beratung.jpg", "portrait": "images/portrait.jpg", "kurt": "images/kurt.jpg", "logo": "images/logo.png", "lLeben": "images/lLeben.jpg", "lMittt": "images/lMittt.jpg", "lKideti": "images/lKideti.jpg"};(function(){document.querySelectorAll("[data-img]").forEach(function(el){var k=el.getAttribute("data-img");var s=window.__IMGS[k];if(!s)return;if(el.tagName==="IMG"){el.src=s;}else{el.style.backgroundImage="url("+s+")";el.style.backgroundSize="cover";if(!el.style.backgroundPosition)el.style.backgroundPosition="center";}});})();</script>
 <script>
 (function () {
   /* ---------- image fallback: show placeholder if a real photo can't load ---------- */
