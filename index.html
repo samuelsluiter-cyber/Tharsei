@@ -143,11 +143,11 @@
   /* image frame + graceful fallback */
   .frame { position:relative; overflow:hidden; background:
       linear-gradient(135deg,#E9E1CF, #D9E0CE); }
-  .frame img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block; }
+  .frame img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block; border-radius:inherit; }
   .frame img.contain { object-fit:contain; padding:1.25rem; }
   .frame .ph {
     position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:.5rem; text-align:center; padding:1.25rem; color:#5D6C4E;
+    gap:.5rem; text-align:center; padding:1.25rem; color:#5D6C4E; border-radius:inherit;
     background: linear-gradient(150deg,#E7E9D8 0%, #DCE3D1 45%, #E9DBC9 100%);
   }
   .frame img[data-broken="1"] { display:none; }
@@ -317,7 +317,7 @@
     <div class="grid md:grid-cols-3 gap-6">
       <button data-nav="kurt" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
         <div class="frame h-52">
-          <img data-img="kurt" width="771" height="1080" alt="Tiergestützte Pädagogik mit Therapiebegleithund Kurt" loading="lazy" style="object-position:center 8%"/>
+          <img data-img="kurt" width="771" height="1080" alt="Tiergestützte Pädagogik mit Therapiebegleithund Kurt" loading="lazy" style="object-position:center 11%"/>
           <div class="ph"><i data-lucide="dog" class="w-8 h-8"></i><span class="text-sm">Kurt in der Natur</span></div>
         </div>
         <div class="p-6">
