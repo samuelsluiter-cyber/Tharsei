@@ -601,7 +601,7 @@
             <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><i data-lucide="clock" class="w-4 h-4 text-terra"></i> Einzelgespräch · 50 Min · <strong>80 €</strong></span>
             <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><i data-lucide="users" class="w-4 h-4 text-terra"></i> Paargespräch · 90 Min · <strong>120 €</strong></span>
           </div>
-          <p>Bezahlt werden kann per PayPal, Sofortüberweisung oder vor Ort mit Karte.</p>
+          <p>Bezahlt werden kann per Sofortüberweisung oder vor Ort mit Karte.</p>
           <p>Ich bin Mitglied im christlichen Netzwerk <strong class="text-forest">leben:helfen e.V.</strong> Sollte es Ihnen nicht möglich sein, die Kosten zu tragen, schreiben Sie mich an. Unter bestimmten Voraussetzungen finden wir gemeinsam eine Lösung.</p>
           <p>Als Selbstzahler:in genießen Sie volle Anonymität: Ihre Beratung wird nicht in öffentlichen Datenbanken erfasst, ein Schutz z. B. bei Verbeamtung oder Lebensversicherungen.</p>
         </div></div>
@@ -792,6 +792,8 @@
             <input type="checkbox" id="c-consent" class="mt-1 accent-sage-dp w-4 h-4" />
             <span>Ich habe die <a href="#" data-nav="datenschutz" class="text-terra underline underline-offset-2">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.</span>
           </label>
+          <input type="text" id="c-website" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
+          <p id="formError" class="hidden text-sm text-terra"></p>
           <button id="submitBtn" class="btn-terra w-full sm:w-auto px-8 py-3.5 rounded-full font-medium inline-flex items-center justify-center gap-2">
             Nachricht senden <i data-lucide="send" class="w-4 h-4"></i>
           </button>
@@ -893,7 +895,7 @@
       <div>
         <h2 class="font-display text-xl text-forest mb-2">Zentrale Kontaktstelle nach dem Digital Services Act (DSA)</h2>
         <p>
-          Telefon: <a href="tel:+4917620469554" class="text-terra underline underline-offset-2">0176 2046 9554</a><br>
+          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra underline underline-offset-2">info@tharsei.de</a><br>
           Für den Kontakt zur Verfügung stehende Sprache: Deutsch.
         </p>
       </div>
@@ -935,8 +937,10 @@
         <h2 class="font-display text-2xl text-forest mb-3">Kontaktformular</h2>
         <p>
           Wenn Sie mir per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular
-          inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von
-          Anschlussfragen bei mir gespeichert. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1
+          inklusive der von Ihnen dort angegebenen Kontaktdaten über den Formular-Dienst FormSubmit verarbeitet und
+          per E-Mail an mein Postfach weitergeleitet, wo sie zwecks Bearbeitung der Anfrage und für den Fall von
+          Anschlussfragen gespeichert werden. Es erfolgt keine dauerhafte Speicherung Ihrer Daten beim Formular-Dienst
+          selbst. Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1
           lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung
           vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf meinem
           berechtigten Interesse an der effektiven Bearbeitung der an mich gerichteten Anfragen (Art. 6 Abs. 1 lit. f
@@ -948,7 +952,7 @@
         <h2 class="font-display text-2xl text-forest mb-3">Hosting</h2>
         <p>
           Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern meines Hosters
-          gespeichert: Samuel Sluiter, Telefon: <a href="tel:+4917620469554" class="text-terra underline underline-offset-2">0176 2046 9554</a>.
+          gespeichert: IONOS SE, Elgendorfer Straße 57, 56410 Montabaur.
           Mit dem Hoster besteht ein Vertrag zur Auftragsverarbeitung.
         </p>
       </div>
@@ -1116,29 +1120,72 @@
     });
   }
 
-  /* ---------- contact form (simulated) ---------- */
+  /* ---------- contact form ---------- */
   var submitBtn = document.getElementById('submitBtn');
   var formInner = document.getElementById('contactForm');
   var success = document.getElementById('formSuccess');
   var resetBtn = document.getElementById('resetBtn');
+  var formError = document.getElementById('formError');
 
   submitBtn.addEventListener('click', function () {
     var name = document.getElementById('c-name').value.trim();
     var mail = document.getElementById('c-mail').value.trim();
+    var text = document.getElementById('c-text').value.trim();
     var consent = document.getElementById('c-consent').checked;
     // gentle inline validation
-    [['c-name', name], ['c-mail', mail]].forEach(function (pair) {
+    [['c-name', name], ['c-mail', mail], ['c-text', text]].forEach(function (pair) {
       var el = document.getElementById(pair[0]);
       el.style.borderColor = pair[1] ? '' : '#C0774E';
     });
     var consentBox = document.getElementById('c-consent');
     consentBox.style.outline = consent ? '' : '2px solid #C0774E';
-    if (!name || !mail || !consent) return;
+    if (!name || !mail || !text || !consent) return;
 
-    formInner.classList.add('hidden');
-    success.classList.remove('hidden');
-    if (window.lucide) lucide.createIcons();
-    window.scrollTo({ top: document.getElementById('page-kontakt').offsetTop - 40, behavior: 'smooth' });
+    formError.classList.add('hidden');
+
+    // Honeypot: Spam-Bots füllen dieses versteckte Feld oft aus.
+    if (document.getElementById('c-website').value) {
+      formInner.classList.add('hidden');
+      success.classList.remove('hidden');
+      if (window.lucide) lucide.createIcons();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '.6';
+
+    var data = new URLSearchParams();
+    data.set('name', name);
+    data.set('email', mail);
+    data.set('phone', document.getElementById('c-tel').value.trim());
+    data.set('anliegen', document.getElementById('c-anliegen').value);
+    data.set('message', text);
+    data.set('_subject', 'Neue Nachricht über das Kontaktformular: Tharsei');
+    data.set('_template', 'table');
+    data.set('_cc', 'esther.sluiter@web.de');
+    data.set('_captcha', 'false');
+
+    fetch('https://formsubmit.co/ajax/info@tharsei.de', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: data.toString() })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+        if (json && (json.success === true || json.success === 'true')) {
+          formInner.classList.add('hidden');
+          success.classList.remove('hidden');
+          if (window.lucide) lucide.createIcons();
+          window.scrollTo({ top: document.getElementById('page-kontakt').offsetTop - 40, behavior: 'smooth' });
+        } else {
+          formError.textContent = 'Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an info@tharsei.de.';
+          formError.classList.remove('hidden');
+        }
+      })
+      .catch(function () {
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '';
+        formError.textContent = 'Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an info@tharsei.de.';
+        formError.classList.remove('hidden');
+      });
   });
 
   resetBtn.addEventListener('click', function () {
