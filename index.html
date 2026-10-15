@@ -9,7 +9,8 @@
 <link rel="icon" type="image/png" href="images/logo.png" />
 <link rel="apple-touch-icon" href="images/logo.png" />
 
-<!-- TODO: og:url und og:image auf die echte, live erreichbare Domain/Pfad anpassen, sobald die Seite deployed ist. -->
+<!-- SEO & Canonical -->
+<link rel="canonical" href="https://tharsei.de/" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="de_DE" />
 <meta property="og:site_name" content="Tharsei" />
@@ -47,151 +48,185 @@
 }
 </script>
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<script src="https://unpkg.com/lucide@latest"></script>
-
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          sand:      '#F8F4EB',
-          paper:     '#F1EBDC',
-          cream:     '#E9E1CF',
-          sage:      '#8B9A78',
-          'sage-dp': '#5D6C4E',
-          forest:    '#333D2B',
-          terra:     '#C0774E',
-          'terra-sf':'#D89D79',
-          ink:       '#2C2E26',
-          muted:     '#6C6A5B',
-        },
-        fontFamily: {
-          display: ['Lora', 'Georgia', 'serif'],
-          body:    ['Inter', 'system-ui', 'sans-serif'],
-        },
-        boxShadow: {
-          soft:  '0 18px 40px -22px rgba(51,61,43,0.35)',
-          card:  '0 10px 30px -18px rgba(51,61,43,0.30)',
-        },
-      },
-    },
-  };
-</script>
-
-<style>
-  :root { color-scheme: light; }
-  html { scroll-behavior: smooth; }
-  html, body { max-width:100%; overflow-x:hidden; }
-  img, iframe { max-width:100%; }
-  body { background: #F8F4EB; }
-
-  /* Organic paper texture on the background */
-  body::before {
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background:
-      radial-gradient(1100px 600px at 82% -8%, rgba(139,154,120,0.20), transparent 60%),
-      radial-gradient(900px 520px at -6% 12%, rgba(192,119,78,0.10), transparent 55%),
-      radial-gradient(1200px 900px at 50% 120%, rgba(93,108,78,0.10), transparent 60%);
-  }
-
-  .font-display { font-family:'Lora',Georgia,serif; }
-
-  /* ---- SPA page fade routing ---- */
-  .page { display:none; }
-  .page.active {
-    display:block;
-    animation: pageIn .6s cubic-bezier(.22,.61,.36,1) both;
-  }
-  @keyframes pageIn {
-    from { opacity:0; transform: translateY(14px); }
-    to   { opacity:1; transform: translateY(0); }
-  }
-
-  /* ---- reveal on load ---- */
-  .rise { opacity:0; transform: translateY(20px); animation: rise .8s cubic-bezier(.22,.61,.36,1) forwards; }
-  .rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.30s}.rise.d4{animation-delay:.42s}.rise.d5{animation-delay:.54s}
-  @keyframes rise { to { opacity:1; transform:none; } }
-
-  /* ---- signature: the Achtbarkeit pillars breathe softly ---- */
-  .breathe { animation: breathe 7s ease-in-out infinite; }
-  .breathe.b2 { animation-delay: 1.2s; }
-  .breathe.b3 { animation-delay: 2.4s; }
-  @keyframes breathe {
-    0%,100% { transform: translateY(0) scale(1); }
-    50%     { transform: translateY(-6px) scale(1.015); }
-  }
-
-  /* accordion */
-  .acc-body { max-height:0; overflow:hidden; transition:max-height .5s ease; }
-  .acc-item.open .acc-body { max-height:640px; }
-  .acc-item.open .acc-chevron { transform: rotate(180deg); }
-  .acc-chevron { transition: transform .4s ease; }
-
-  /* nav underline */
-  .nav-link { position:relative; }
-  .nav-link::after{
-    content:""; position:absolute; left:0; right:0; bottom:-4px; height:2px;
-    background:#C0774E; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .3s ease;
-  }
-  .nav-link:hover::after, .nav-link.current::after { transform:scaleX(1); }
-
-  /* image frame + graceful fallback */
-  .frame { position:relative; overflow:hidden; background:
-      linear-gradient(135deg,#E9E1CF, #D9E0CE); }
-  .frame img { position:relative; z-index:1; width:100%; height:100%; object-fit:cover; display:block; border-radius:inherit; }
-  .frame img.contain { object-fit:contain; padding:1.25rem; }
-  .frame .ph {
-    position:absolute; inset:0; z-index:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:.5rem; text-align:center; padding:1.25rem; color:#5D6C4E; border-radius:inherit;
-    background: linear-gradient(150deg,#E7E9D8 0%, #DCE3D1 45%, #E9DBC9 100%);
-  }
-  .frame img[data-broken="1"] { display:none; }
-
-  .btn-terra { background:#C0774E; color:#FBF7EF; transition: all .25s ease; }
-  .btn-terra:hover { background:#A9663F; transform: translateY(-2px); box-shadow:0 14px 26px -14px rgba(192,119,78,.7); }
-  .btn-ghost { border:1.5px solid #5D6C4E; color:#3A4630; transition: all .25s ease; }
-  .btn-ghost:hover { background:#5D6C4E; color:#F8F4EB; }
-
-  .chip { transition: all .2s ease; }
-  .chip.on { background:#5D6C4E; color:#F8F4EB; border-color:#5D6C4E; }
-
-  .leaf-divider { color:#8B9A78; opacity:.7; }
-
-  #mobileMenu { overflow:hidden; max-height:80vh; transition: max-height .35s ease, opacity .25s ease; }
-  #mobileMenu.hidden-menu { max-height:0; opacity:0; pointer-events:none; border-top-color:transparent; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-    .rise { opacity:1; transform:none; }
-    .page.active { animation:none; }
-  }
-
-  :focus-visible { outline:3px solid #C0774E; outline-offset:3px; border-radius:4px; }
-</style>
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="font-body text-ink antialiased">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" />
+  </symbol>
+  <symbol id="icon-badge-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+  <path d="m16 9-5.5 5.5L8 12" />
+  </symbol>
+  <symbol id="icon-book-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5v16" />
+  <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" />
+  </symbol>
+  <symbol id="icon-calendar-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 14v2.2l1.6 1" />
+  <path d="M16 2v3" />
+  <path d="M21 7.338V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h2.338" />
+  <path d="M3 9h5.859" />
+  <path d="M8 2v3" />
+  <circle cx="16" cy="16" r="6" />
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 6 9 17l-5-5" />
+  </symbol>
+  <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m6 9 6 6 6-6" />
+  </symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10" />
+  <path d="M12 6v6l4 2" />
+  </symbol>
+  <symbol id="icon-dog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11.25 16.25h1.5L12 17z" />
+  <path d="M16 14v.5" />
+  <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309" />
+  <path d="M8 14v.5" />
+  <path d="M8.5 8.5c-.384 1.05-1.083 2.028-2.344 2.5-1.931.722-3.576-.297-3.656-1-.113-.994 1.177-6.53 4-7 1.923-.321 3.651.845 3.651 2.235A7.497 7.497 0 0 1 14 5.277c0-1.39 1.844-2.598 3.767-2.277 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5" />
+  </symbol>
+  <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+  <circle cx="12" cy="12" r="3" />
+  </symbol>
+  <symbol id="icon-feather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.086 18.412A2 2 0 0112.67 19H5v-7.672a2 2 0 01.586-1.414L11.75 3.75a6 6 0 118.49 8.49z" />
+  <path d="M16 8 2 22" />
+  <path d="M17.488 15H9" />
+  </symbol>
+  <symbol id="icon-footprints" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z" />
+  <path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z" />
+  <path d="M16 17h4" />
+  <path d="M4 13h4" />
+  </symbol>
+  <symbol id="icon-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 7v14" />
+  <path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" />
+  <path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5" />
+  <rect x="3" y="7" width="18" height="4" rx="1" />
+  </symbol>
+  <symbol id="icon-hand-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 14h2a2 2 0 0 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16" />
+  <path d="m14.45 13.39 5.05-4.694C20.196 8 21 6.85 21 5.75a2.75 2.75 0 0 0-4.797-1.837.276.276 0 0 1-.406 0A2.75 2.75 0 0 0 11 5.75c0 1.2.802 2.248 1.5 2.946L16 11.95" />
+  <path d="m2 15 6 6" />
+  <path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a1 1 0 0 0-2.75-2.91" />
+  </symbol>
+  <symbol id="icon-heart-handshake" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762" />
+  </symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" />
+  </symbol>
+  <symbol id="icon-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20" />
+  <path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13" />
+  </symbol>
+  <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </symbol>
+  <symbol id="icon-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" />
+  </symbol>
+  <symbol id="icon-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" />
+  <path d="M15 5.764v15" />
+  <path d="M9 3.236v15" />
+  </symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 5h16" />
+  <path d="M4 12h16" />
+  <path d="M4 19h16" />
+  </symbol>
+  <symbol id="icon-messages-square" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  <path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1" />
+  </symbol>
+  <symbol id="icon-paw-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="11" cy="4" r="2" />
+  <circle cx="18" cy="8" r="2" />
+  <circle cx="20" cy="16" r="2" />
+  <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+  </symbol>
+  <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" />
+  <path d="m21.854 2.147-10.94 10.939" />
+  </symbol>
+  <symbol id="icon-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" />
+  </symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+  <path d="M20 2v4" />
+  <path d="M22 4h-4" />
+  <circle cx="4" cy="20" r="2" />
+  </symbol>
+  <symbol id="icon-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3" />
+  <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4" />
+  <path d="M5 21h14" />
+  </symbol>
+  <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4" />
+  <path d="M12 2v2" />
+  <path d="M12 20v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="m17.66 17.66 1.41 1.41" />
+  <path d="M2 12h2" />
+  <path d="M20 12h2" />
+  <path d="m6.34 17.66-1.41 1.41" />
+  <path d="m19.07 4.93-1.41 1.41" />
+  </symbol>
+  <symbol id="icon-unlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+  </symbol>
+  <symbol id="icon-user-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="5" />
+  <path d="M20 21a8 8 0 0 0-16 0" />
+  </symbol>
+  <symbol id="icon-users-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 21a8 8 0 0 0-16 0" />
+  <circle cx="10" cy="8" r="5" />
+  <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+  </symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <circle cx="9" cy="7" r="4" />
+  </symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 6 6 18" />
+  <path d="m6 6 12 12" />
+  </symbol>
+</svg>
+
 
 <!-- ================= HEADER ================= -->
 <header class="sticky top-0 z-50 backdrop-blur-md bg-sand/80 border-b border-cream/70">
   <div class="max-w-6xl mx-auto px-5 md:px-8">
     <div class="flex items-center justify-between h-[74px]">
       <!-- Logo -->
-      <a href="#" data-nav="home" class="flex items-center gap-2.5 group" aria-label="Tharsei Startseite">
-        <img data-img="logo" width="199" height="200" alt="Tharsei: Sei guten Mutes" class="h-12 w-auto" />
+      <a href="#home" data-nav="home" class="flex items-center gap-2.5 group" aria-label="Tharsei Startseite">
+        <img src="images/logo.png" width="199" height="200" alt="Tharsei: Sei guten Mutes" class="h-12 w-auto" />
       </a>
 
       <!-- Desktop nav -->
       <nav class="hidden lg:flex items-center gap-8 text-[15px] text-ink/85" aria-label="Hauptnavigation">
-        <a href="#" data-nav="home"     class="nav-link">Start</a>
-        <a href="#" data-nav="angebote" class="nav-link">Angebote &amp; Ablauf</a>
-        <a href="#" data-nav="kurt"     class="nav-link">Kurt</a>
-        <a href="#" data-nav="haltung"  class="nav-link">Über mich</a>
-        <a href="#" data-nav="kontakt"  class="nav-link">Kontakt</a>
+        <a href="#home" data-nav="home"     class="nav-link">Start</a>
+        <a href="#angebote" data-nav="angebote" class="nav-link">Angebote &amp; Ablauf</a>
+        <a href="#kurt" data-nav="kurt"     class="nav-link">Kurt</a>
+        <a href="#haltung" data-nav="haltung"  class="nav-link">Über mich</a>
+        <a href="#kontakt" data-nav="kontakt"  class="nav-link">Kontakt</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -200,7 +235,8 @@
         </button>
         <!-- Hamburger -->
         <button id="burger" class="lg:hidden grid place-items-center w-11 h-11 rounded-full text-forest hover:bg-cream/70 transition" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobileMenu">
-          <i data-lucide="menu" class="w-6 h-6"></i>
+          <svg id="burgerIconMenu" class="w-6 h-6" aria-hidden="true"><use href="#icon-menu"></use></svg>
+          <svg id="burgerIconClose" class="w-6 h-6 hidden" aria-hidden="true"><use href="#icon-x"></use></svg>
         </button>
       </div>
     </div>
@@ -209,11 +245,11 @@
   <!-- Mobile menu -->
   <div id="mobileMenu" class="hidden-menu lg:hidden border-t border-cream/70 bg-sand/95 backdrop-blur">
     <nav class="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1 text-[17px]" aria-label="Mobile Navigation">
-      <a href="#" data-nav="home"     class="py-3 px-2 rounded-lg hover:bg-cream/60">Start</a>
-      <a href="#" data-nav="angebote" class="py-3 px-2 rounded-lg hover:bg-cream/60">Angebote &amp; Ablauf</a>
-      <a href="#" data-nav="kurt"     class="py-3 px-2 rounded-lg hover:bg-cream/60">Tiergestützte Pädagogik mit Kurt</a>
-      <a href="#" data-nav="haltung"  class="py-3 px-2 rounded-lg hover:bg-cream/60">Über mich</a>
-      <a href="#" data-nav="kontakt"  class="py-3 px-2 rounded-lg hover:bg-cream/60">Kontakt</a>
+      <a href="#home" data-nav="home"     class="py-3 px-2 rounded-lg hover:bg-cream/60">Start</a>
+      <a href="#angebote" data-nav="angebote" class="py-3 px-2 rounded-lg hover:bg-cream/60">Angebote &amp; Ablauf</a>
+      <a href="#kurt" data-nav="kurt"     class="py-3 px-2 rounded-lg hover:bg-cream/60">Tiergestützte Pädagogik mit Kurt</a>
+      <a href="#haltung" data-nav="haltung"  class="py-3 px-2 rounded-lg hover:bg-cream/60">Über mich</a>
+      <a href="#kontakt" data-nav="kontakt"  class="py-3 px-2 rounded-lg hover:bg-cream/60">Kontakt</a>
       <button data-nav="kontakt" class="mt-2 btn-terra px-5 py-3 rounded-full text-sm font-medium">Erstgespräch anfragen</button>
     </nav>
   </div>
@@ -235,7 +271,7 @@
     <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-14 md:pb-20 grid lg:grid-cols-12 gap-10 items-center">
       <div class="lg:col-span-7">
         <p class="rise d1 inline-flex items-center gap-2 text-sage-dp/90 text-sm tracking-[.18em] uppercase mb-6">
-          <i data-lucide="sprout" class="w-4 h-4"></i> Tharsei
+          <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-sprout"></use></svg> Tharsei
         </p>
         <h1 class="rise d2 font-display leading-[1.15] text-forest">
           <span class="block text-xl sm:text-2xl md:text-3xl text-terra">Psychosoziale Beratung<br>Suchtprävention und<br>Tiergestützte Pädagogik<br>in Emden.</span>
@@ -243,16 +279,16 @@
         <!-- TODO Esther: neuer Einleitungssatz folgt -->
         <div class="rise d4 mt-8 flex flex-wrap gap-4">
           <button data-nav="kontakt" class="btn-terra px-7 py-3.5 rounded-full font-medium inline-flex items-center gap-2">
-            Erstgespräch anfragen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            Erstgespräch anfragen <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
           </button>
         </div>
       </div>
 
       <div class="lg:col-span-5 rise d3">
         <div class="frame rounded-[2rem] aspect-[4/5] shadow-soft ring-1 ring-white/50">
-          <img data-img="portrait" width="771" height="1080" alt="Esther Sluiter, Begleitung in Lebenskrisen bei Tharsei in Emden" loading="lazy" style="object-position:center 12%" />
+          <img src="images/portrait.jpg" fetchpriority="high" width="771" height="1080" alt="Esther Sluiter, Begleitung in Lebenskrisen bei Tharsei in Emden" style="object-position:center 12%" />
           <div class="ph">
-            <i data-lucide="heart-handshake" class="w-9 h-9"></i>
+            <svg class="w-9 h-9" aria-hidden="true"><use href="#icon-heart-handshake"></use></svg>
             <span class="text-sm font-medium">Warmes Foto: Esther Sluiter</span>
           </div>
         </div>
@@ -268,7 +304,7 @@
     <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 md:py-24 text-center">
       <div class="flex items-center justify-center gap-3 mb-8 leaf-divider" aria-hidden="true">
         <span class="h-px w-14 bg-current opacity-40"></span>
-        <i data-lucide="feather" class="w-5 h-5"></i>
+        <svg class="w-5 h-5" aria-hidden="true"><use href="#icon-feather"></use></svg>
         <span class="h-px w-14 bg-current opacity-40"></span>
       </div>
       <h2 class="font-display text-3xl md:text-5xl text-forest leading-tight">
@@ -284,7 +320,7 @@
         <!-- Achtsamkeit -->
         <article class="breathe bg-sand rounded-3xl p-8 shadow-card text-left border border-cream">
           <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage/15 text-sage-dp mb-5">
-            <i data-lucide="eye" class="w-6 h-6"></i>
+            <svg class="w-6 h-6" aria-hidden="true"><use href="#icon-eye"></use></svg>
           </span>
           <h3 class="font-display text-2xl text-forest mb-2">Achtsamkeit</h3>
           <p class="text-muted leading-relaxed">im Sinne einer wachen, urteilsfreien Gegenwärtigkeit. Sie ist Ausdruck innerer Bereitschaft, dem anderen wirklich zu begegnen, nicht als Objekt, sondern als von Gott geliebtes Gegenüber wertzuschätzen.</p>
@@ -292,7 +328,7 @@
         <!-- Dankbarkeit -->
         <article class="breathe b2 bg-sand rounded-3xl p-8 shadow-card text-left border border-cream">
           <span class="grid place-items-center w-12 h-12 rounded-2xl bg-terra/15 text-terra mb-5">
-            <i data-lucide="gift" class="w-6 h-6"></i>
+            <svg class="w-6 h-6" aria-hidden="true"><use href="#icon-gift"></use></svg>
           </span>
           <h3 class="font-display text-2xl text-forest mb-2">Dankbarkeit</h3>
           <p class="text-muted leading-relaxed">als Haltung, die den anderen als Gabe erkennt, unabhängig von seiner Funktion, seiner Geschichte oder seinen Symptomen. Diese Dankbarkeit nährt sich aus dem christlichen Menschenbild, das in jedem Menschen ein Ebenbild Gottes sieht, auch, oder gerade dann, wenn sein Leben von Brüchen, Schuld oder Schmerz gezeichnet ist.</p>
@@ -300,7 +336,7 @@
         <!-- Demut -->
         <article class="breathe b3 bg-sand rounded-3xl p-8 shadow-card text-left border border-cream">
           <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage-dp/15 text-sage-dp mb-5">
-            <i data-lucide="hand-heart" class="w-6 h-6"></i>
+            <svg class="w-6 h-6" aria-hidden="true"><use href="#icon-hand-heart"></use></svg>
           </span>
           <h3 class="font-display text-2xl text-forest mb-2">Demut</h3>
           <p class="text-muted leading-relaxed">Das Anerkennen Gottes und die Bereitschaft, sich selbst in seinem Licht zu sehen, ist ein Zeichen der Demut. Demütige Menschen erkennen ihre Abhängigkeit von Gott und verstehen ihre Talente als Geschenk: als etwas, das ihnen anvertraut wurde.</p>
@@ -316,37 +352,37 @@
     <div class="grid md:grid-cols-3 gap-6">
       <button data-nav="kurt" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
         <div class="frame h-52">
-          <img data-img="kurt" width="771" height="1080" alt="Tiergestützte Pädagogik mit Therapiebegleithund Kurt" loading="lazy" style="object-position:center 11%"/>
-          <div class="ph"><i data-lucide="dog" class="w-8 h-8"></i><span class="text-sm">Kurt in der Natur</span></div>
+          <img src="images/kurt.jpg" width="771" height="1080" alt="Tiergestützte Pädagogik mit Therapiebegleithund Kurt" loading="lazy" style="object-position:center 11%"/>
+          <div class="ph"><svg class="w-8 h-8" aria-hidden="true"><use href="#icon-dog"></use></svg><span class="text-sm">Kurt in der Natur</span></div>
         </div>
         <div class="p-6">
           <h3 class="font-display text-xl text-forest mb-2 group-hover:text-terra transition">Tiergestützte Pädagogik</h3>
           <p class="text-muted text-sm leading-relaxed">Lernen und Heilen mit tierischer Hilfe: Therapiebegleithund Kurt öffnet Räume für Vertrauen.</p>
-          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></span>
         </div>
       </button>
 
       <button data-nav="angebote" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
         <div class="frame h-52">
-          <img data-img="beratung" width="771" height="1080" alt="Psychosoziale Beratung: Begleitung in Krisen" loading="lazy" style="object-position:center 40%"/>
-          <div class="ph"><i data-lucide="messages-square" class="w-8 h-8"></i><span class="text-sm">Beratungssituation</span></div>
+          <img src="images/beratung.jpg" width="771" height="1080" alt="Psychosoziale Beratung: Begleitung in Krisen" loading="lazy" style="object-position:center 40%"/>
+          <div class="ph"><svg class="w-8 h-8" aria-hidden="true"><use href="#icon-messages-square"></use></svg><span class="text-sm">Beratungssituation</span></div>
         </div>
         <div class="p-6">
           <h3 class="font-display text-xl text-forest mb-2 group-hover:text-terra transition">Psychosoziale Beratung</h3>
           <p class="text-muted text-sm leading-relaxed">Begleitung in Lebenskrisen, Suchtberatung, Angehörigen- und Paargespräche.</p>
-          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></span>
         </div>
       </button>
 
       <button data-nav="angebote" class="group text-left bg-sand rounded-3xl overflow-hidden shadow-card border border-cream hover:shadow-soft transition">
         <div class="frame h-52">
-          <img data-img="portrait" width="771" height="1080" alt="Suchtprävention: Aufklärung und Schutz" loading="lazy" style="object-position:center 12%"/>
-          <div class="ph"><i data-lucide="shield-check" class="w-8 h-8"></i><span class="text-sm">Suchtprävention</span></div>
+          <img src="images/portrait.jpg" width="771" height="1080" alt="Suchtprävention: Aufklärung und Schutz" loading="lazy" style="object-position:center 12%"/>
+          <div class="ph"><svg class="w-8 h-8" aria-hidden="true"><use href="#icon-shield-check"></use></svg><span class="text-sm">Suchtprävention</span></div>
         </div>
         <div class="p-6">
           <h3 class="font-display text-xl text-forest mb-2 group-hover:text-terra transition">Suchtprävention</h3>
           <p class="text-muted text-sm leading-relaxed">Früh hinschauen, Bewusstsein schaffen, Schutzfaktoren stärken: für Schulen, Vereine und Familien.</p>
-          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <i data-lucide="arrow-right" class="w-4 h-4"></i></span>
+          <span class="inline-flex items-center gap-1 text-terra text-sm mt-4 font-medium">Mehr erfahren <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></span>
         </div>
       </button>
     </div>
@@ -363,26 +399,26 @@
           Gedanken und Gefühle kommen ins Fließen, und Kurt wirkt dabei wie ein Eisbrecher, der ganz ohne Worte Nähe schenkt.
         </p>
         <button data-nav="kurt" class="mt-8 inline-flex items-center gap-2 bg-sand text-forest px-6 py-3 rounded-full font-medium hover:bg-terra-sf transition">
-          Kurt kennenlernen <i data-lucide="paw-print" class="w-4 h-4"></i>
+          Kurt kennenlernen <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-paw-print"></use></svg>
         </button>
       </div>
       <div class="frame rounded-[2rem] aspect-[5/4] shadow-soft">
-        <img data-img="kurt" width="771" height="1080" alt="Walk & Talk: Beratung beim Gehen in der Natur mit Hund Kurt" loading="lazy" style="object-position:center 10%"/>
-        <div class="ph"><i data-lucide="footprints" class="w-9 h-9"></i><span class="text-sm">Spaziergang am Deich mit Kurt</span></div>
+        <img src="images/kurt.jpg" width="771" height="1080" alt="Walk & Talk: Beratung beim Gehen in der Natur mit Hund Kurt" loading="lazy" style="object-position:center 10%"/>
+        <div class="ph"><svg class="w-9 h-9" aria-hidden="true"><use href="#icon-footprints"></use></svg><span class="text-sm">Spaziergang am Deich mit Kurt</span></div>
       </div>
     </div>
   </div>
 
   <!-- Final CTA -->
   <div class="max-w-4xl mx-auto px-5 md:px-8 py-20 md:py-28 text-center">
-    <i data-lucide="sun" class="w-10 h-10 text-terra mx-auto mb-6"></i>
+    <svg class="w-10 h-10 text-terra mx-auto mb-6" aria-hidden="true"><use href="#icon-sun"></use></svg>
     <h2 class="font-display text-3xl md:text-4xl text-forest leading-tight">Schreiben Sie mir einfach.</h2>
     <p class="mt-5 text-muted text-lg max-w-xl mx-auto">
       Ein paar Zeilen genügen, unverbindlich und in Ruhe.
       Ich melde mich herzlich bei Ihnen zurück.
     </p>
     <button data-nav="kontakt" class="mt-9 btn-terra px-8 py-4 rounded-full font-medium inline-flex items-center gap-2">
-      Kontakt aufnehmen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      Kontakt aufnehmen <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
     </button>
   </div>
 </section>
@@ -401,8 +437,8 @@
   <div class="max-w-6xl mx-auto px-5 md:px-8 pb-16 grid lg:grid-cols-12 gap-10 items-start">
     <div class="lg:col-span-5">
       <div class="frame rounded-[2rem] aspect-[4/5] shadow-soft ring-1 ring-white/50 sticky top-24">
-        <img data-img="portrait" width="771" height="1080" alt="Esther Sluiter, staatlich anerkannte Sozialarbeiterin und -pädagogin" loading="lazy" style="object-position:center 12%"/>
-        <div class="ph"><i data-lucide="user-round" class="w-10 h-10"></i><span class="text-sm font-medium">Esther Sluiter</span></div>
+        <img src="images/portrait.jpg" width="771" height="1080" alt="Esther Sluiter, staatlich anerkannte Sozialarbeiterin und -pädagogin" loading="lazy" style="object-position:center 12%"/>
+        <div class="ph"><svg class="w-10 h-10" aria-hidden="true"><use href="#icon-user-round"></use></svg><span class="text-sm font-medium">Esther Sluiter</span></div>
       </div>
     </div>
     <div class="lg:col-span-7 space-y-6 text-lg text-muted leading-relaxed">
@@ -420,7 +456,7 @@
       </p>
       <div class="bg-paper/70 border border-cream rounded-3xl p-7">
         <h2 class="font-display text-2xl text-forest mb-3 flex items-center gap-2">
-          <i data-lucide="book-open" class="w-5 h-5 text-terra"></i> Warum „Tharsei"?
+          <svg class="w-5 h-5 text-terra" aria-hidden="true"><use href="#icon-book-open"></use></svg> Warum „Tharsei"?
         </h2>
         <!-- TODO: Audiostelle unklar – vermutlich Christus-/Zuflucht-Zitat, bitte mit Original-Aufnahme abgleichen und Text ergänzen. Bewusst nicht frei formuliert. -->
         <p class="text-base">
@@ -448,17 +484,17 @@
 
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-sand rounded-3xl p-8 border border-cream shadow-card">
-          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage/15 text-sage-dp mb-5"><i data-lucide="eye" class="w-6 h-6"></i></span>
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage/15 text-sage-dp mb-5"><svg class="w-6 h-6" aria-hidden="true"><use href="#icon-eye"></use></svg></span>
           <h3 class="font-display text-2xl text-forest mb-2">Achtsamkeit</h3>
           <p class="text-muted leading-relaxed">im Sinne einer wachen, urteilsfreien Gegenwärtigkeit. Sie ist Ausdruck innerer Bereitschaft, dem anderen wirklich zu begegnen, nicht als Objekt, sondern als von Gott geliebtes Gegenüber wertzuschätzen.</p>
         </div>
         <div class="bg-sand rounded-3xl p-8 border border-cream shadow-card">
-          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-terra/15 text-terra mb-5"><i data-lucide="gift" class="w-6 h-6"></i></span>
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-terra/15 text-terra mb-5"><svg class="w-6 h-6" aria-hidden="true"><use href="#icon-gift"></use></svg></span>
           <h3 class="font-display text-2xl text-forest mb-2">Dankbarkeit</h3>
           <p class="text-muted leading-relaxed">als Haltung, die den anderen als Gabe erkennt, unabhängig von seiner Funktion, seiner Geschichte oder seinen Symptomen. Diese Dankbarkeit nährt sich aus dem christlichen Menschenbild, das in jedem Menschen ein Ebenbild Gottes sieht, auch, oder gerade dann, wenn sein Leben von Brüchen, Schuld oder Schmerz gezeichnet ist.</p>
         </div>
         <div class="bg-sand rounded-3xl p-8 border border-cream shadow-card">
-          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage-dp/15 text-sage-dp mb-5"><i data-lucide="hand-heart" class="w-6 h-6"></i></span>
+          <span class="grid place-items-center w-12 h-12 rounded-2xl bg-sage-dp/15 text-sage-dp mb-5"><svg class="w-6 h-6" aria-hidden="true"><use href="#icon-hand-heart"></use></svg></span>
           <h3 class="font-display text-2xl text-forest mb-2">Demut</h3>
           <p class="text-muted leading-relaxed">Das Anerkennen Gottes und die Bereitschaft, sich selbst in seinem Licht zu sehen, ist ein Zeichen der Demut. Demütige Menschen erkennen ihre Abhängigkeit von Gott und verstehen ihre Talente als Geschenk: als etwas, das ihnen anvertraut wurde.</p>
         </div>
@@ -470,7 +506,7 @@
 
       <div class="text-center mt-10">
         <button data-nav="kontakt" class="btn-terra px-7 py-3.5 rounded-full font-medium inline-flex items-center gap-2">
-          Erstgespräch anfragen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          Erstgespräch anfragen <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
         </button>
       </div>
     </div>
@@ -492,36 +528,36 @@
     <div class="grid md:grid-cols-3 gap-6" id="offerGrid">
       <!-- Tiergestützt -->
       <article data-cat="tiergestuetzt" class="offer bg-sand rounded-3xl p-7 border border-cream shadow-card">
-        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage-dp/15 text-sage-dp mb-4"><i data-lucide="dog" class="w-5 h-5"></i></span>
+        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage-dp/15 text-sage-dp mb-4"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-dog"></use></svg></span>
         <h3 class="font-display text-xl text-forest mb-3">Tiergestützte Pädagogik</h3>
         <ul class="text-muted text-[15px] space-y-1.5">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Tierschutz &amp; Tierwohl stehen an erster Stelle</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Zertifiziertes Pädagogik-/Therapiebegleithundeteam, Rezertifizierung alle 2 Jahre</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Mitglied bei Therapiebegleithunde Deutschland e.V.</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Einzel-, Gruppensettings &amp; Walk &amp; Talk in der Natur</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Tierschutz &amp; Tierwohl stehen an erster Stelle</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Zertifiziertes Pädagogik-/Therapiebegleithundeteam, Rezertifizierung alle 2 Jahre</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Mitglied bei Therapiebegleithunde Deutschland e.V.</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Einzel-, Gruppensettings &amp; Walk &amp; Talk in der Natur</li>
         </ul>
-        <button data-nav="kurt" class="mt-4 text-terra text-sm font-medium inline-flex items-center gap-1">Mehr zu Kurt <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+        <button data-nav="kurt" class="mt-4 text-terra text-sm font-medium inline-flex items-center gap-1">Mehr zu Kurt <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
       </article>
       <!-- Beratung -->
       <article data-cat="beratung" class="offer bg-sand rounded-3xl p-7 border border-cream shadow-card">
-        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage/15 text-sage-dp mb-4"><i data-lucide="messages-square" class="w-5 h-5"></i></span>
+        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage/15 text-sage-dp mb-4"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-messages-square"></use></svg></span>
         <h3 class="font-display text-xl text-forest mb-3">Psychosoziale Beratung</h3>
         <ul class="text-muted text-[15px] space-y-1.5">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Beratung in Lebenskrisen</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Suchtberatung</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Angehörigengespräche</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Paargespräche</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Beratung in Lebenskrisen</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Suchtberatung</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Angehörigengespräche</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Paargespräche</li>
         </ul>
       </article>
       <!-- Prävention -->
       <article data-cat="praevention" class="offer bg-sand rounded-3xl p-7 border border-cream shadow-card">
-        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-terra/15 text-terra mb-4"><i data-lucide="shield-check" class="w-5 h-5"></i></span>
+        <span class="grid place-items-center w-11 h-11 rounded-2xl bg-terra/15 text-terra mb-4"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-shield-check"></use></svg></span>
         <h3 class="font-display text-xl text-forest mb-3">Suchtprävention</h3>
         <ul class="text-muted text-[15px] space-y-1.5">
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Schulen: Workshops &amp; Projekttage</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Vereine &amp; Institutionen: Impulsvorträge</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Einzelpersonen &amp; Familien</li>
-          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-terra mt-1 shrink-0"></i> Auf Wunsch tiergestützt mit Kurt</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Schulen: Workshops &amp; Projekttage</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Vereine &amp; Institutionen: Impulsvorträge</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Einzelpersonen &amp; Familien</li>
+          <li class="flex gap-2"><svg class="w-4 h-4 text-terra mt-1 shrink-0" aria-hidden="true"><use href="#icon-check"></use></svg> Auf Wunsch tiergestützt mit Kurt</li>
         </ul>
       </article>
     </div>
@@ -558,10 +594,10 @@
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
         <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
           <span class="font-display text-lg text-forest">Wie läuft die Kontaktaufnahme ab?</span>
-          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+          <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
         <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
-          Ganz einfach über das <button data-nav="kontakt" class="text-terra underline underline-offset-2 font-medium">Kontaktformular</button>.
+          Ganz einfach über das <button data-nav="kontakt" class="text-terra-dark underline underline-offset-2 font-medium">Kontaktformular</button>.
           Schreiben Sie mir ein paar Zeilen zu Ihrem Anliegen. Ich melde mich herzlich zurück und wir finden gemeinsam einen ersten Termin.
         </div></div>
       </div>
@@ -569,7 +605,7 @@
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
         <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
           <span class="font-display text-lg text-forest">Wie sieht das erste Gespräch aus?</span>
-          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+          <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
         <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
           Der erste Termin dient dem Kennenlernen und einem umfassenden Einblick in den Beratungsprozess.
@@ -581,7 +617,7 @@
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
         <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
           <span class="font-display text-lg text-forest">Wie viele Sitzungen sind üblich?</span>
-          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+          <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
         <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
           Das ergibt sich flexibel aus den Gesprächen und Ihrem individuellen Bedarf.
@@ -592,13 +628,13 @@
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
         <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
           <span class="font-display text-lg text-forest">Was kostet die Beratung?</span>
-          <i data-lucide="chevron-down" class="acc-chevron w-5 h-5 text-terra shrink-0"></i>
+          <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
         <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed space-y-3">
           <p>Die Beratung ist eine Selbstzahler‑Leistung; die Kosten werden nicht von den gesetzlichen Krankenkassen übernommen.</p>
           <div class="flex flex-wrap gap-3">
-            <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><i data-lucide="clock" class="w-4 h-4 text-terra"></i> Einzelgespräch · 50 Min · <strong>80 €</strong></span>
-            <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><i data-lucide="users" class="w-4 h-4 text-terra"></i> Paargespräch · 90 Min · <strong>120 €</strong></span>
+            <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><svg class="w-4 h-4 text-terra" aria-hidden="true"><use href="#icon-clock"></use></svg> Einzelgespräch · 50 Min · <strong>80 €</strong></span>
+            <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><svg class="w-4 h-4 text-terra" aria-hidden="true"><use href="#icon-users"></use></svg> Paargespräch · 90 Min · <strong>120 €</strong></span>
           </div>
           <p>Bezahlt werden kann per Sofortüberweisung oder vor Ort mit Karte.</p>
           <p>Ich bin Mitglied im christlichen Netzwerk <strong class="text-forest">leben:helfen e.V.</strong> Sollte es Ihnen nicht möglich sein, die Kosten zu tragen, schreiben Sie mich an. Unter bestimmten Voraussetzungen finden wir gemeinsam eine Lösung.</p>
@@ -612,8 +648,8 @@
   <div class="bg-paper/70 border-y border-cream/70">
     <div class="max-w-6xl mx-auto px-5 md:px-8 py-16 grid lg:grid-cols-2 gap-10 items-center">
       <div class="frame rounded-[2rem] aspect-[5/4] shadow-soft order-2 lg:order-1">
-        <img data-img="kurt" width="771" height="1080" alt="Walk & Talk in der ostfriesischen Natur" loading="lazy" style="object-position:center 10%"/>
-        <div class="ph"><i data-lucide="footprints" class="w-9 h-9"></i><span class="text-sm">Weg durch die Landschaft</span></div>
+        <img src="images/kurt.jpg" width="771" height="1080" alt="Walk & Talk in der ostfriesischen Natur" loading="lazy" style="object-position:center 10%"/>
+        <div class="ph"><svg class="w-9 h-9" aria-hidden="true"><use href="#icon-footprints"></use></svg><span class="text-sm">Weg durch die Landschaft</span></div>
       </div>
       <div class="order-1 lg:order-2">
         <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4">Beratung in Bewegung</p>
@@ -635,7 +671,7 @@
 <section id="page-kurt" class="page">
   <div class="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-12 grid lg:grid-cols-12 gap-10 items-center">
     <div class="lg:col-span-6">
-      <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4 inline-flex items-center gap-2"><i data-lucide="paw-print" class="w-4 h-4"></i> Tiergestützte Pädagogik</p>
+      <p class="text-sage-dp tracking-[.2em] uppercase text-sm mb-4 inline-flex items-center gap-2"><svg class="w-4 h-4" aria-hidden="true"><use href="#icon-paw-print"></use></svg> Tiergestützte Pädagogik</p>
       <h1 class="font-display text-4xl md:text-5xl text-forest leading-tight">Darf ich vorstellen: <span class="italic text-terra">Kurt</span>.</h1>
       <p class="mt-6 text-lg text-muted leading-relaxed">
         Tiere begegnen uns vorurteilsfrei: sie urteilen nicht, sie werten nicht. Genau darin liegt ihre besondere Stärke.
@@ -644,8 +680,8 @@
     </div>
     <div class="lg:col-span-6">
       <div class="frame rounded-[2rem] aspect-[4/3] shadow-soft ring-1 ring-white/50">
-        <img data-img="kurt" width="771" height="1080" alt="Therapiebegleithund Kurt" loading="lazy"/>
-        <div class="ph"><i data-lucide="dog" class="w-10 h-10"></i><span class="text-sm font-medium">Porträt: Hund Kurt</span></div>
+        <img src="images/kurt.jpg" width="771" height="1080" alt="Therapiebegleithund Kurt" loading="lazy"/>
+        <div class="ph"><svg class="w-10 h-10" aria-hidden="true"><use href="#icon-dog"></use></svg><span class="text-sm font-medium">Porträt: Hund Kurt</span></div>
       </div>
     </div>
   </div>
@@ -653,10 +689,10 @@
   <!-- Vertrauens- & Zertifikats-Leiste -->
   <div class="max-w-6xl mx-auto px-5 md:px-8 pb-12 -mt-4">
     <div class="flex flex-wrap gap-3">
-      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><i data-lucide="heart-handshake" class="w-4 h-4 text-sage-dp"></i> Tierschutz &amp; Tierwohl an erster Stelle</span>
-      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><i data-lucide="badge-check" class="w-4 h-4 text-terra"></i> Zertifiziertes Pädagogik-/Therapiebegleithundeteam, Rezertifizierung alle 2 Jahre</span>
-      <a href="https://www.tbdev.de/de/home" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest hover:border-sage-dp/40 transition"><i data-lucide="paw-print" class="w-4 h-4 text-sage-dp"></i> Mitglied bei Therapiebegleithunde Deutschland e.V.</a>
-      <a href="https://kideti.de/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest hover:border-sage-dp/40 transition"><i data-lucide="users-round" class="w-4 h-4 text-terra"></i> Mitglied im Verein KiDeTi, Kinder, Demenz und Tiere e.V.</a>
+      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><svg class="w-4 h-4 text-sage-dp" aria-hidden="true"><use href="#icon-heart-handshake"></use></svg> Tierschutz &amp; Tierwohl an erster Stelle</span>
+      <span class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest"><svg class="w-4 h-4 text-terra" aria-hidden="true"><use href="#icon-badge-check"></use></svg> Zertifiziertes Pädagogik-/Therapiebegleithundeteam, Rezertifizierung alle 2 Jahre</span>
+      <a href="https://www.tbdev.de/de/home" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest hover:border-sage-dp/40 transition"><svg class="w-4 h-4 text-sage-dp" aria-hidden="true"><use href="#icon-paw-print"></use></svg> Mitglied bei Therapiebegleithunde Deutschland e.V.</a>
+      <a href="https://kideti.de/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-sand border border-cream rounded-full px-4 py-2 text-sm text-forest hover:border-sage-dp/40 transition"><svg class="w-4 h-4 text-terra" aria-hidden="true"><use href="#icon-users-round"></use></svg> Mitglied im Verein KiDeTi, Kinder, Demenz und Tiere e.V.</a>
     </div>
   </div>
 
@@ -670,17 +706,17 @@
       </p>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
-          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage/15 text-sage-dp mb-4"><i data-lucide="unlock" class="w-5 h-5"></i></span>
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage/15 text-sage-dp mb-4"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-unlock"></use></svg></span>
           <h3 class="font-display text-lg text-forest mb-2">Türöffner</h3>
           <p class="text-muted text-[15px] leading-relaxed">Kurts Anwesenheit senkt Anspannung: viele Menschen fühlen sich sicherer, entspannter und öffnen sich leichter.</p>
         </div>
         <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
-          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-terra/15 text-terra mb-4"><i data-lucide="sparkles" class="w-5 h-5"></i></span>
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-terra/15 text-terra mb-4"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-sparkles"></use></svg></span>
           <h3 class="font-display text-lg text-forest mb-2">Selbstwirksamkeit</h3>
           <p class="text-muted text-[15px] leading-relaxed">In der Begegnung mit dem Tier erleben Menschen Wirkung, Verantwortung und gelingende Beziehung, ganz unmittelbar.</p>
         </div>
         <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
-          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage-dp/15 text-sage-dp mb-4"><i data-lucide="heart" class="w-5 h-5"></i></span>
+          <span class="grid place-items-center w-11 h-11 rounded-2xl bg-sage-dp/15 text-sage-dp mb-4"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-heart"></use></svg></span>
           <h3 class="font-display text-lg text-forest mb-2">Trost &amp; Nähe</h3>
           <p class="text-muted text-[15px] leading-relaxed">Kurt schenkt Nähe, ohne zu fordern. Seine Gegenwart kann Trost spenden und emotionale Prozesse behutsam begleiten.</p>
         </div>
@@ -710,22 +746,22 @@
         Bedürfnissen. Schreiben Sie mich gerne an!
       </p>
       <button data-nav="kontakt" class="mt-7 btn-terra px-7 py-3.5 rounded-full font-medium inline-flex items-center gap-2">
-        Walk &amp; Talk anfragen <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        Walk &amp; Talk anfragen <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
       </button>
     </div>
     <div class="frame rounded-[2rem] aspect-[5/4] shadow-soft" style="background:#FBF8F1">
-      <img data-img="mindful" width="1024" height="850" class="contain" alt="Mind Full vs. Mindful: vom vollen Kopf zur inneren Weite" loading="lazy"/>
-      <div class="ph"><i data-lucide="leaf" class="w-9 h-9"></i><span class="text-sm">Illustration: Mind Full vs. Mindful</span></div>
+      <img src="images/mindful.jpg" width="1024" height="850" class="contain" alt="Mind Full vs. Mindful: vom vollen Kopf zur inneren Weite" loading="lazy"/>
+      <div class="ph"><svg class="w-9 h-9" aria-hidden="true"><use href="#icon-leaf"></use></svg><span class="text-sm">Illustration: Mind Full vs. Mindful</span></div>
     </div>
   </div>
 
   <!-- Gallery -->
   <div class="max-w-6xl mx-auto px-5 md:px-8 pb-20">
     <h3 class="font-display text-2xl text-forest mb-6">Eindrücke</h3>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <div class="frame rounded-2xl aspect-square shadow-card" data-img="kurt" role="img" aria-label="Kurt am Deich"></div>
-      <div class="frame rounded-2xl aspect-square shadow-card" data-img="portrait" role="img" aria-label="Esther Sluiter in der Praxis" style="background-position:center 12%"></div>
-      <div class="frame rounded-2xl aspect-square shadow-card" data-img="beratung" role="img" aria-label="Im Gespräch"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div class="frame rounded-2xl aspect-square shadow-card" style="background-image:url(images/kurt.jpg);background-size:cover;background-position:center" role="img" aria-label="Kurt am Deich"></div>
+      <div class="frame rounded-2xl aspect-square shadow-card" style="background-image:url(images/portrait.jpg);background-size:cover;background-position:center 12%" role="img" aria-label="Esther Sluiter in der Praxis"></div>
+      <div class="frame rounded-2xl aspect-square shadow-card" style="background-image:url(images/beratung.jpg);background-size:cover;background-position:center" role="img" aria-label="Im Gespräch"></div>
     </div>
   </div>
 </section>
@@ -742,7 +778,7 @@
     </p>
 
     <div class="mt-6 bg-terra text-sand rounded-2xl px-5 py-4 shadow-soft flex items-center gap-4 max-w-2xl">
-      <span class="grid place-items-center w-10 h-10 rounded-xl bg-sand/15 shrink-0"><i data-lucide="sparkles" class="w-5 h-5"></i></span>
+      <span class="grid place-items-center w-10 h-10 rounded-xl bg-sand/15 shrink-0"><svg class="w-5 h-5" aria-hidden="true"><use href="#icon-sparkles"></use></svg></span>
       <div>
         <h2 class="font-display text-lg mb-0.5">20 Minuten kostenloses Erstgespräch</h2>
         <p class="text-sand/90 text-sm leading-snug">
@@ -756,7 +792,7 @@
     <!-- Form -->
     <div class="lg:col-span-7">
       <div id="formCard" class="bg-sand rounded-3xl p-6 md:p-9 border border-cream shadow-card">
-        <div class="space-y-5" id="contactForm">
+        <form class="space-y-5" id="contactForm" novalidate>
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
               <label for="c-name" class="block text-sm text-forest mb-1.5 font-medium">Name</label>
@@ -789,19 +825,18 @@
           </div>
           <label class="flex items-start gap-3 text-sm text-muted">
             <input type="checkbox" id="c-consent" class="mt-1 accent-sage-dp w-4 h-4" />
-            <span>Ich habe die <a href="#" data-nav="datenschutz" class="text-terra underline underline-offset-2">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.</span>
+            <span>Ich habe die <a href="#datenschutz" data-nav="datenschutz" class="text-terra-dark underline underline-offset-2">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.</span>
           </label>
           <input type="text" id="c-website" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
           <p id="formError" class="hidden text-sm text-terra"></p>
-          <button id="submitBtn" class="btn-terra w-full sm:w-auto px-8 py-3.5 rounded-full font-medium inline-flex items-center justify-center gap-2">
-            Nachricht senden <i data-lucide="send" class="w-4 h-4"></i>
+          <button id="submitBtn" type="submit" class="btn-terra w-full sm:w-auto px-8 py-3.5 rounded-full font-medium inline-flex items-center justify-center gap-2">
+            Nachricht senden <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-send"></use></svg>
           </button>
-        </div>
-
+        </form>
         <!-- Confirmation -->
         <div id="formSuccess" class="hidden text-center py-10">
           <span class="grid place-items-center w-16 h-16 rounded-full bg-sage/20 text-sage-dp mx-auto mb-5">
-            <i data-lucide="check" class="w-8 h-8"></i>
+            <svg class="w-8 h-8" aria-hidden="true"><use href="#icon-check"></use></svg>
           </span>
           <h3 class="font-display text-2xl text-forest mb-3">Danke.</h3>
           <p class="text-muted max-w-md mx-auto">
@@ -816,15 +851,15 @@
     <!-- Aside: Standort & Sprechzeiten (no phone / no email) -->
     <aside class="lg:col-span-5 space-y-5">
       <div class="bg-forest text-sand rounded-3xl p-7">
-        <h3 class="font-display text-xl mb-4 flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-terra-sf"></i> Standort</h3>
+        <h3 class="font-display text-xl mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-terra-sf" aria-hidden="true"><use href="#icon-map-pin"></use></svg> Standort</h3>
         <p class="text-sand/85 leading-relaxed">Kloster-Langen-Straße 30<br>26723 Emden<br>Ostfriesland</p>
         <div class="h-px bg-sand/15 my-5"></div>
-        <h3 class="font-display text-xl mb-3 flex items-center gap-2"><i data-lucide="calendar-clock" class="w-5 h-5 text-terra-sf"></i> Sprechzeiten</h3>
+        <h3 class="font-display text-xl mb-3 flex items-center gap-2"><svg class="w-5 h-5 text-terra-sf" aria-hidden="true"><use href="#icon-calendar-clock"></use></svg> Sprechzeiten</h3>
         <p class="text-sand/85 leading-relaxed">Termine nach persönlicher Vereinbarung.<br>Walk-&-Talk-Termine flexibel, ganz nach Ihren Bedürfnissen.</p>
       </div>
       <div class="bg-sand rounded-3xl p-7 border border-cream shadow-card">
         <p class="text-muted leading-relaxed flex gap-3">
-          <i data-lucide="lock" class="w-5 h-5 text-sage-dp shrink-0 mt-0.5"></i>
+          <svg class="w-5 h-5 text-sage-dp shrink-0 mt-0.5" aria-hidden="true"><use href="#icon-lock"></use></svg>
           <span>Alles, was Sie mir anvertrauen, wird vertraulich behandelt. Als Selbstzahler:in genießen Sie volle Anonymität.</span>
         </p>
       </div>
@@ -833,17 +868,17 @@
   <div class="max-w-6xl mx-auto px-5 md:px-8 pb-20">
     <div class="bg-sand rounded-3xl border border-cream shadow-card overflow-hidden">
       <div class="flex items-center gap-2 px-6 pt-5 pb-3 text-forest">
-        <i data-lucide="map-pin" class="w-5 h-5 text-terra"></i>
+        <svg class="w-5 h-5 text-terra" aria-hidden="true"><use href="#icon-map-pin"></use></svg>
         <span class="font-display text-lg">So finden Sie mich</span>
       </div>
       <div id="mapConsent" class="px-6 pb-6">
         <p class="text-muted text-sm mb-4 max-w-xl">
           Beim Laden der Karte wird eine Verbindung zu Google Maps hergestellt und Ihre IP-Adresse
           an Google übermittelt. Weitere Informationen dazu finden Sie in unserer
-          <a href="#" data-nav="datenschutz" class="text-terra underline underline-offset-2">Datenschutzerklärung</a>.
+          <a href="#datenschutz" data-nav="datenschutz" class="text-terra-dark underline underline-offset-2">Datenschutzerklärung</a>.
         </p>
         <button id="loadMapBtn" class="btn-ghost px-6 py-3 rounded-full font-medium inline-flex items-center gap-2">
-          <i data-lucide="map" class="w-4 h-4"></i> Karte laden
+          <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-map"></use></svg> Karte laden
         </button>
       </div>
       <div id="mapFrame" class="hidden"></div>
@@ -872,7 +907,7 @@
       <div>
         <h2 class="font-display text-xl text-forest mb-2">Kontakt</h2>
         <p>
-          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra underline underline-offset-2">info@tharsei.de</a>
+          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra-dark underline underline-offset-2">info@tharsei.de</a>
         </p>
       </div>
       <div>
@@ -894,7 +929,7 @@
       <div>
         <h2 class="font-display text-xl text-forest mb-2">Zentrale Kontaktstelle nach dem Digital Services Act (DSA)</h2>
         <p>
-          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra underline underline-offset-2">info@tharsei.de</a><br>
+          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra-dark underline underline-offset-2">info@tharsei.de</a><br>
           Für den Kontakt zur Verfügung stehende Sprache: Deutsch.
         </p>
       </div>
@@ -916,7 +951,7 @@
         <h2 class="font-display text-2xl text-forest mb-3">Verantwortliche Stelle</h2>
         <p>
           Esther Sluiter, Kloster-Langen-Straße 30, 26723 Emden.<br>
-          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra underline underline-offset-2">info@tharsei.de</a>
+          E-Mail: <a href="mailto:info@tharsei.de" class="text-terra-dark underline underline-offset-2">info@tharsei.de</a>
         </p>
       </div>
 
@@ -955,7 +990,7 @@
           einer sicheren und zuverlässigen Darstellung meiner Website (Art. 6 Abs. 1 lit. f DSGVO). Eine Übermittlung
           in die USA kann nicht ausgeschlossen werden; GitHub ist nach dem EU-US Data Privacy Framework zertifiziert.
           Weitere Informationen finden Sie in der
-          <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener" class="text-terra underline underline-offset-2">Datenschutzerklärung von GitHub</a>.
+          <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener" class="text-terra-dark underline underline-offset-2">Datenschutzerklärung von GitHub</a>.
           Die Domain wird bei der IONOS SE, Elgendorfer Straße 57, 56410 Montabaur, verwaltet.
         </p>
       </div>
@@ -963,10 +998,17 @@
       <div>
         <h2 class="font-display text-2xl text-forest mb-3">Cookies</h2>
         <p>
-          Diese Website verwendet teilweise Cookies. Session-Cookies werden nach Ende Ihres Besuchs automatisch
-          gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine
-          automatische Löschung durch Ihren Webbrowser erfolgt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
-          beziehungsweise, sofern eine Einwilligung abgefragt wurde, § 25 Abs. 1 TDDDG.
+          Diese Website verwendet keine Cookies und keine Tracking-Tools. Beim Aufruf der Seiten werden keinerlei
+          persistente oder temporäre Cookies auf Ihrem Endgerät gespeichert.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-2xl text-forest mb-3">Schriftarten (Lokales Hosting)</h2>
+        <p>
+          Diese Seite nutzt zur einheitlichen Darstellung von Texten Schriftarten (Lora und Inter). Alle Schriftdateien
+          sind lokal auf dem eigenen Webserver gespeichert und werden ohne externe Verbindung zu Servern Dritter
+          (wie Google) ausgeliefert. Es erfolgt keine Übermittlung Ihrer IP-Adresse an externe Schriftarten-Dienste.
         </p>
       </div>
 
@@ -978,7 +1020,7 @@
           eingebunden. Erst dann wird eine Verbindung zu Servern von Google LLC in den USA hergestellt und dabei
           unter anderem Ihre IP-Adresse übermittelt. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a
           DSGVO). Weitere Informationen finden Sie in den
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-terra underline underline-offset-2">Datenschutzhinweisen von Google</a>.
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-terra-dark underline underline-offset-2">Datenschutzhinweisen von Google</a>.
         </p>
       </div>
 
@@ -1001,7 +1043,7 @@
     <div class="grid md:grid-cols-12 gap-10">
       <div class="md:col-span-5">
         <div class="flex items-center gap-2.5 mb-4">
-          <img data-img="logo" width="199" height="200" alt="Tharsei" class="h-14 w-auto" style="filter:brightness(0) invert(1);opacity:.92" />
+          <img src="images/logo.png" width="199" height="200" alt="Tharsei" class="h-14 w-auto" style="filter:brightness(0) invert(1);opacity:.92" />
         </div>
         <p class="text-sand/70 leading-relaxed max-w-sm">Sei guten Mutes. Fasse Mut. Psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden.</p>
       </div>
@@ -1009,21 +1051,21 @@
       <nav class="md:col-span-3">
         <h4 class="text-sand font-medium mb-4">Navigation</h4>
         <ul class="space-y-2.5 text-sand/70">
-          <li><a href="#" data-nav="home" class="hover:text-terra-sf transition">Start</a></li>
-          <li><a href="#" data-nav="angebote" class="hover:text-terra-sf transition">Angebote &amp; Ablauf</a></li>
-          <li><a href="#" data-nav="kurt" class="hover:text-terra-sf transition">Tiergestützte Pädagogik</a></li>
-          <li><a href="#" data-nav="haltung" class="hover:text-terra-sf transition">Über mich</a></li>
-          <li><a href="#" data-nav="kontakt" class="hover:text-terra-sf transition">Kontakt</a></li>
+          <li><a href="#home" data-nav="home" class="hover:text-terra-sf transition">Start</a></li>
+          <li><a href="#angebote" data-nav="angebote" class="hover:text-terra-sf transition">Angebote &amp; Ablauf</a></li>
+          <li><a href="#kurt" data-nav="kurt" class="hover:text-terra-sf transition">Tiergestützte Pädagogik</a></li>
+          <li><a href="#haltung" data-nav="haltung" class="hover:text-terra-sf transition">Über mich</a></li>
+          <li><a href="#kontakt" data-nav="kontakt" class="hover:text-terra-sf transition">Kontakt</a></li>
         </ul>
       </nav>
 
       <div class="md:col-span-4">
         <h4 class="text-sand font-medium mb-4">Netzwerk &amp; Mitgliedschaften</h4>
         <div class="grid grid-cols-2 gap-3">
-          <a href="https://beratung-leben-helfen.de/" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img data-img="lLeben" width="300" height="147" alt="leben:helfen, Christliche Beratung e.V." class="max-h-full w-auto object-contain"/></a>
-          <a href="https://www.tbdev.de/de/home" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img data-img="lTbdev" width="300" height="147" alt="Therapiebegleithunde Deutschland e.V." class="max-h-full w-auto object-contain"/></a>
-          <a href="https://www.mittt.de/" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img data-img="lMittt" width="300" height="147" alt="Münsteraner Institut für therapeutische Fortbildung und tiergestützte Therapie" class="max-h-full w-auto object-contain"/></a>
-          <a href="https://kideti.de/" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img data-img="lKideti" width="300" height="147" alt="Kinder, Demenz und Tiere e.V." class="max-h-full w-auto object-contain"/></a>
+          <a href="https://beratung-leben-helfen.de/" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img src="images/lLeben.jpg" width="300" height="147" alt="leben:helfen, Christliche Beratung e.V." class="max-h-full w-auto object-contain"/></a>
+          <a href="https://www.tbdev.de/de/home" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img src="images/lTbdev.jpg" width="300" height="147" alt="Therapiebegleithunde Deutschland e.V." class="max-h-full w-auto object-contain"/></a>
+          <a href="https://www.mittt.de/" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img src="images/lMittt.jpg" width="300" height="147" alt="Münsteraner Institut für therapeutische Fortbildung und tiergestützte Therapie" class="max-h-full w-auto object-contain"/></a>
+          <a href="https://kideti.de/" target="_blank" rel="noopener" class="bg-sand rounded-xl p-2.5 flex items-center justify-center aspect-[2/1] hover:opacity-80 transition"><img src="images/lKideti.jpg" width="300" height="147" alt="Kinder, Demenz und Tiere e.V." class="max-h-full w-auto object-contain"/></a>
         </div>
       </div>
     </div>
@@ -1032,65 +1074,108 @@
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-sand/60">
       <p>© 2026 Tharsei · Esther Sluiter</p>
       <div class="flex items-center gap-6">
-        <a href="#" data-nav="impressum" class="hover:text-terra-sf transition">Impressum</a>
-        <a href="#" data-nav="datenschutz" class="hover:text-terra-sf transition">Datenschutzerklärung</a>
+        <a href="#impressum" data-nav="impressum" class="hover:text-terra-sf transition">Impressum</a>
+        <a href="#datenschutz" data-nav="datenschutz" class="hover:text-terra-sf transition">Datenschutzerklärung</a>
       </div>
     </div>
   </div>
 </footer>
 
-<script>window.__IMGS={"mindful": "images/mindful.jpg", "lTbdev": "images/lTbdev.jpg", "beratung": "images/beratung.jpg", "portrait": "images/portrait.jpg", "kurt": "images/kurt.jpg", "logo": "images/logo.png", "lLeben": "images/lLeben.jpg", "lMittt": "images/lMittt.jpg", "lKideti": "images/lKideti.jpg"};(function(){document.querySelectorAll("[data-img]").forEach(function(el){var k=el.getAttribute("data-img");var s=window.__IMGS[k];if(!s)return;if(el.tagName==="IMG"){el.src=s;}else{el.style.backgroundImage="url("+s+")";el.style.backgroundSize="cover";if(!el.style.backgroundPosition)el.style.backgroundPosition="center";}});})();</script>
+
 <script>
 (function () {
-  /* ---------- image fallback: show placeholder if a real photo can't load ---------- */
+  /* ---------- Image fallback ---------- */
   document.querySelectorAll('.frame img').forEach(function (img) {
     img.addEventListener('error', function () { img.setAttribute('data-broken', '1'); });
-    // if already failed before listener attached
     if (img.complete && img.naturalWidth === 0) img.setAttribute('data-broken', '1');
   });
 
-  /* ---------- SPA routing ---------- */
-  var pages = {
-    home:        document.getElementById('page-home'),
-    haltung:     document.getElementById('page-haltung'),
-    angebote:    document.getElementById('page-angebote'),
-    kurt:        document.getElementById('page-kurt'),
-    kontakt:     document.getElementById('page-kontakt'),
-    impressum:   document.getElementById('page-impressum'),
-    datenschutz: document.getElementById('page-datenschutz'),
-  };
-  var navLinks = document.querySelectorAll('.nav-link');
+  /* ---------- Hash-based SPA routing ---------- */
+  var validPages = ['home', 'haltung', 'angebote', 'kurt', 'kontakt', 'impressum', 'datenschutz'];
+  var pages = {};
+  validPages.forEach(function (k) {
+    pages[k] = document.getElementById('page-' + k);
+  });
+  var navLinks = document.querySelectorAll('[data-nav]');
 
-  function go(name) {
+  function getTargetFromHash() {
+    var h = (window.location.hash || '').replace('#', '').trim();
+    return pages[h] ? h : 'home';
+  }
+
+  function go(name, pushHash) {
     if (!pages[name]) name = 'home';
-    Object.keys(pages).forEach(function (k) {
-      pages[k].classList.toggle('active', k === name);
+    if (pushHash !== false && window.location.hash !== '#' + name) {
+      window.location.hash = name;
+      return;
+    }
+    validPages.forEach(function (k) {
+      if (pages[k]) pages[k].classList.toggle('active', k === name);
     });
     navLinks.forEach(function (l) {
-      l.classList.toggle('current', l.getAttribute('data-nav') === name);
+      if (l.classList.contains('nav-link')) {
+        l.classList.toggle('current', l.getAttribute('data-nav') === name);
+      }
     });
     window.scrollTo({ top: 0, behavior: 'auto' });
     closeMenu();
-    if (window.lucide) lucide.createIcons();
   }
+
+  window.addEventListener('hashchange', function () {
+    go(getTargetFromHash(), false);
+  });
 
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-nav]');
     if (!t) return;
-    e.preventDefault();
-    go(t.getAttribute('data-nav'));
+    var target = t.getAttribute('data-nav');
+    if (target) {
+      e.preventDefault();
+      go(target);
+    }
   });
 
-  /* ---------- mobile menu ---------- */
+  /* ---------- Mobile menu with Escape and outside-click support ---------- */
   var burger = document.getElementById('burger');
   var menu = document.getElementById('mobileMenu');
-  function openMenu()  { menu.classList.remove('hidden-menu'); burger.setAttribute('aria-expanded', 'true'); burger.querySelector('[data-lucide]')?.setAttribute('data-lucide','x'); if(window.lucide) lucide.createIcons(); }
-  function closeMenu() { menu.classList.add('hidden-menu'); burger.setAttribute('aria-expanded', 'false'); var i = burger.querySelector('[data-lucide]'); if(i){ i.setAttribute('data-lucide','menu'); if(window.lucide) lucide.createIcons(); } }
+  var iconMenu = document.getElementById('burgerIconMenu');
+  var iconClose = document.getElementById('burgerIconClose');
+
+  function openMenu() {
+    menu.classList.remove('hidden-menu');
+    burger.setAttribute('aria-expanded', 'true');
+    if (iconMenu && iconClose) {
+      iconMenu.classList.add('hidden');
+      iconClose.classList.remove('hidden');
+    }
+  }
+
+  function closeMenu() {
+    menu.classList.add('hidden-menu');
+    burger.setAttribute('aria-expanded', 'false');
+    if (iconMenu && iconClose) {
+      iconClose.classList.add('hidden');
+      iconMenu.classList.remove('hidden');
+    }
+  }
+
   burger.addEventListener('click', function () {
     if (menu.classList.contains('hidden-menu')) openMenu(); else closeMenu();
   });
 
-  /* ---------- accordion ---------- */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !menu.classList.contains('hidden-menu')) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!menu.classList.contains('hidden-menu') && !menu.contains(e.target) && !burger.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  /* ---------- Accordion ---------- */
   document.querySelectorAll('.acc-head').forEach(function (head) {
     head.addEventListener('click', function () {
       var item = head.closest('.acc-item');
@@ -1123,52 +1208,68 @@
     });
   }
 
-  /* ---------- contact form ---------- */
-  var submitBtn = document.getElementById('submitBtn');
+  /* ---------- Accessible contact form ---------- */
   var formInner = document.getElementById('contactForm');
+  var submitBtn = document.getElementById('submitBtn');
   var success = document.getElementById('formSuccess');
   var resetBtn = document.getElementById('resetBtn');
   var formError = document.getElementById('formError');
 
-  submitBtn.addEventListener('click', function () {
-    var name = document.getElementById('c-name').value.trim();
-    var mail = document.getElementById('c-mail').value.trim();
-    var text = document.getElementById('c-text').value.trim();
-    var consent = document.getElementById('c-consent').checked;
-    // gentle inline validation
-    [['c-name', name], ['c-mail', mail], ['c-text', text]].forEach(function (pair) {
-      var el = document.getElementById(pair[0]);
-      el.style.borderColor = pair[1] ? '' : '#C0774E';
-    });
-    var consentBox = document.getElementById('c-consent');
-    consentBox.style.outline = consent ? '' : '2px solid #C0774E';
-    if (!name || !mail || !text || !consent) return;
+  if (formInner) {
+    formInner.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    formError.classList.add('hidden');
+      var name = document.getElementById('c-name').value.trim();
+      var mail = document.getElementById('c-mail').value.trim();
+      var text = document.getElementById('c-text').value.trim();
+      var consent = document.getElementById('c-consent').checked;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var isMailValid = emailRegex.test(mail);
 
-    // Honeypot: Spam-Bots füllen dieses versteckte Feld oft aus.
-    if (document.getElementById('c-website').value) {
-      formInner.classList.add('hidden');
-      success.classList.remove('hidden');
-      if (window.lucide) lucide.createIcons();
-      return;
-    }
+      [['c-name', !!name], ['c-mail', isMailValid], ['c-text', !!text]].forEach(function (pair) {
+        var el = document.getElementById(pair[0]);
+        el.style.borderColor = pair[1] ? '' : '#9C522D';
+      });
 
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '.6';
+      var consentBox = document.getElementById('c-consent');
+      consentBox.style.outline = consent ? '' : '2px solid #9C522D';
 
-    var data = new URLSearchParams();
-    data.set('name', name);
-    data.set('email', mail);
-    data.set('phone', document.getElementById('c-tel').value.trim());
-    data.set('anliegen', document.getElementById('c-anliegen').value);
-    data.set('message', text);
-    data.set('_subject', 'Neue Nachricht über das Kontaktformular: Tharsei');
-    data.set('_template', 'table');
-    data.set('_cc', 'esther.sluiter@web.de');
-    data.set('_captcha', 'false');
+      if (!name || !isMailValid || !text || !consent) {
+        formError.textContent = !isMailValid && mail
+          ? 'Bitte geben Sie eine gültige E-Mail-Adresse ein.'
+          : 'Bitte füllen Sie alle erforderlichen Felder aus und bestätigen Sie die Datenschutzerklärung.';
+        formError.classList.remove('hidden');
+        return;
+      }
 
-    fetch('https://formsubmit.co/ajax/info@tharsei.de', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' }, body: data.toString() })
+      formError.classList.add('hidden');
+
+      // Honeypot check
+      if (document.getElementById('c-website').value) {
+        formInner.classList.add('hidden');
+        success.classList.remove('hidden');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '.6';
+
+      var data = new URLSearchParams();
+      data.set('name', name);
+      data.set('email', mail);
+      data.set('phone', document.getElementById('c-tel').value.trim());
+      data.set('anliegen', document.getElementById('c-anliegen').value);
+      data.set('message', text);
+      data.set('_subject', 'Neue Nachricht über das Kontaktformular: Tharsei');
+      data.set('_template', 'table');
+      data.set('_cc', 'esther.sluiter@web.de');
+      data.set('_captcha', 'false');
+
+      fetch('https://formsubmit.co/ajax/info@tharsei.de', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
+        body: data.toString()
+      })
       .then(function (res) { return res.json(); })
       .then(function (json) {
         submitBtn.disabled = false;
@@ -1176,7 +1277,6 @@
         if (json && (json.success === true || json.success === 'true')) {
           formInner.classList.add('hidden');
           success.classList.remove('hidden');
-          if (window.lucide) lucide.createIcons();
           window.scrollTo({ top: document.getElementById('page-kontakt').offsetTop - 40, behavior: 'smooth' });
         } else {
           formError.textContent = 'Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an info@tharsei.de.';
@@ -1189,19 +1289,22 @@
         formError.textContent = 'Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an info@tharsei.de.';
         formError.classList.remove('hidden');
       });
-  });
+    });
+  }
 
-  resetBtn.addEventListener('click', function () {
-    ['c-name','c-mail','c-tel','c-text'].forEach(function(id){ document.getElementById(id).value=''; });
-    document.getElementById('c-consent').checked = false;
-    success.classList.add('hidden');
-    formInner.classList.remove('hidden');
-    if (window.lucide) lucide.createIcons();
-  });
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      ['c-name','c-mail','c-tel','c-text'].forEach(function(id){ document.getElementById(id).value=''; });
+      document.getElementById('c-consent').checked = false;
+      success.classList.add('hidden');
+      formInner.classList.remove('hidden');
+    });
+  }
 
-  /* ---------- init ---------- */
-  if (window.lucide) lucide.createIcons();
+  /* ---------- Initial route trigger ---------- */
+  go(getTargetFromHash(), false);
 })();
 </script>
 </body>
 </html>
+
