@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const icons = [
-  "arrow-right","badge-check","book-open","calendar-clock","check","chevron-down",
+  "arrow-right","arrow-up","badge-check","book-open","calendar-clock","check","chevron-down",
   "clock","dog","eye","feather","footprints","gift","hand-heart","heart-handshake",
-  "heart","leaf","lock","map-pin","map","menu","messages-square","paw-print",
+  "heart","leaf","loader-2","lock","map-pin","map","menu","messages-square","paw-print",
   "send","shield-check","sparkles","sprout","sun","unlock","user-round",
   "users-round","users","x"
 ];
@@ -29,7 +29,7 @@ async function run() {
   });
   sprite += '</svg>\n';
 
-  fs.writeFileSync(path.join(__dirname, '../sprite.svg.html'), sprite);
+  fs.writeFileSync(path.join(__dirname, 'sprite.svg.html'), sprite);
   console.log('SVG sprite successfully generated with real vector paths.');
 }
 

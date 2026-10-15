@@ -3,11 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#F8F4EB" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Tharsei: Sei guten Mutes. | Psychosoziale Beratung · Esther Sluiter, Emden</title>
 <meta name="description" content="Tharsei: psychosoziale Beratung, Suchtprävention und tiergestützte Pädagogik in Emden. Begleitung in Lebenskrisen mit Achtbarkeit, von Esther Sluiter und Therapiebegleithund Kurt." />
 
 <link rel="icon" type="image/png" href="images/logo.png" />
 <link rel="apple-touch-icon" href="images/logo.png" />
+
+<!-- Preload critical local fonts for instant render -->
+<link rel="preload" href="fonts/lora-roman.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/inter-roman.woff2" as="font" type="font/woff2" crossorigin />
 
 <!-- SEO & Canonical -->
 <link rel="canonical" href="https://tharsei.de/" />
@@ -32,6 +38,7 @@
   "url": "https://tharsei.de/",
   "image": "https://tharsei.de/images/portrait.jpg",
   "logo": "https://tharsei.de/images/logo.png",
+  "email": "info@tharsei.de",
   "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
@@ -40,10 +47,50 @@
     "addressLocality": "Emden",
     "addressCountry": "DE"
   },
-  "areaServed": "Emden, Ostfriesland",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 53.3670,
+    "longitude": 7.2060
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Emden und Ostfriesland"
+  },
   "founder": {
     "@type": "Person",
-    "name": "Esther Sluiter"
+    "name": "Esther Sluiter",
+    "jobTitle": "Staatlich anerkannte Sozialpädagogin (M.A.) & Suchttherapeutin",
+    "sameAs": "https://tharsei.de/#haltung"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Beratungs- und Pädagogikangebote",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Tiergestützte Pädagogik mit Begleithund Kurt",
+          "description": "Lernen und Heilen mit tierischer Hilfe im Einzel- und Gruppensetting sowie Walk & Talk in der Natur."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Psychosoziale Beratung",
+          "description": "Begleitung in Lebenskrisen, Einzel- und Paargespräche sowie Angehörigenberatung."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Suchtprävention",
+          "description": "Workshops, Projekttage und Vorträge für Schulen, Vereine und Familien."
+        }
+      }
+    ]
   }
 }
 </script>
@@ -52,10 +99,15 @@
 </head>
 
 <body class="font-body text-ink antialiased">
+<a href="#app" class="skip-link">Direkt zum Inhalt springen</a>
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M5 12h14" />
   <path d="m12 5 7 7-7 7" />
+  </symbol>
+  <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m5 12 7-7 7 7" />
+  <path d="M12 19V5" />
   </symbol>
   <symbol id="icon-badge-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
@@ -126,6 +178,9 @@
   <symbol id="icon-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M11 20a10 10 0 0010-10 25.9 25.9 0 00-1.04-7.281 1 1 0 00-1.755-.325C15.833 5.5 13 5.5 9.8 6.1A7 7 0 0011 20" />
   <path d="M2 21a5 5 0 012.911-4.544C7.613 15.212 8.351 15.24 11 13" />
+  </symbol>
+  <symbol id="icon-loader-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
   </symbol>
   <symbol id="icon-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
@@ -255,7 +310,7 @@
   </div>
 </header>
 
-<main id="app">
+<main id="app" tabindex="-1" class="outline-none">
 
 <!-- ================================================================ -->
 <!-- ============================ HOME ============================== -->
@@ -592,22 +647,22 @@
 
     <div class="space-y-3">
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
-        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6" id="acc-btn-1" aria-expanded="false" aria-controls="acc-panel-1">
           <span class="font-display text-lg text-forest">Wie läuft die Kontaktaufnahme ab?</span>
           <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
-        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
+        <div class="acc-body" id="acc-panel-1" role="region" aria-labelledby="acc-btn-1"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
           Ganz einfach über das <button data-nav="kontakt" class="text-terra-dark underline underline-offset-2 font-medium">Kontaktformular</button>.
           Schreiben Sie mir ein paar Zeilen zu Ihrem Anliegen. Ich melde mich herzlich zurück und wir finden gemeinsam einen ersten Termin.
         </div></div>
       </div>
 
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
-        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6" id="acc-btn-2" aria-expanded="false" aria-controls="acc-panel-2">
           <span class="font-display text-lg text-forest">Wie sieht das erste Gespräch aus?</span>
           <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
-        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
+        <div class="acc-body" id="acc-panel-2" role="region" aria-labelledby="acc-btn-2"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
           Der erste Termin dient dem Kennenlernen und einem umfassenden Einblick in den Beratungsprozess.
           Ich nehme mir Zeit, Ihre Situation, Ihre Herausforderungen und Ziele in Ruhe zu besprechen.
           Daraus ergibt sich ein klares Bild und mögliche Schwerpunkte.
@@ -615,22 +670,22 @@
       </div>
 
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
-        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6" id="acc-btn-3" aria-expanded="false" aria-controls="acc-panel-3">
           <span class="font-display text-lg text-forest">Wie viele Sitzungen sind üblich?</span>
           <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
-        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
+        <div class="acc-body" id="acc-panel-3" role="region" aria-labelledby="acc-btn-3"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed">
           Das ergibt sich flexibel aus den Gesprächen und Ihrem individuellen Bedarf.
           Sie entscheiden eigenständig über Frequenz und Dauer der weiteren Beratung. Es gibt kein starres Programm.
         </div></div>
       </div>
 
       <div class="acc-item bg-sand rounded-2xl border border-cream overflow-hidden">
-        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6">
+        <button class="acc-head w-full flex items-center justify-between gap-4 text-left p-5 md:p-6" id="acc-btn-4" aria-expanded="false" aria-controls="acc-panel-4">
           <span class="font-display text-lg text-forest">Was kostet die Beratung?</span>
           <svg class="acc-chevron w-5 h-5 text-terra shrink-0" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </button>
-        <div class="acc-body"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed space-y-3">
+        <div class="acc-body" id="acc-panel-4" role="region" aria-labelledby="acc-btn-4"><div class="px-5 md:px-6 pb-6 text-muted leading-relaxed space-y-3">
           <p>Die Beratung ist eine Selbstzahler‑Leistung; die Kosten werden nicht von den gesetzlichen Krankenkassen übernommen.</p>
           <div class="flex flex-wrap gap-3">
             <span class="inline-flex items-center gap-2 bg-paper rounded-full px-4 py-2 text-forest text-sm"><svg class="w-4 h-4 text-terra" aria-hidden="true"><use href="#icon-clock"></use></svg> Einzelgespräch · 50 Min · <strong>80 €</strong></span>
@@ -795,12 +850,12 @@
         <form class="space-y-5" id="contactForm" novalidate>
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
-              <label for="c-name" class="block text-sm text-forest mb-1.5 font-medium">Name</label>
-              <input id="c-name" type="text" autocomplete="name" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="Ihr Name" />
+              <label for="c-name" class="block text-sm text-forest mb-1.5 font-medium">Name <span class="text-terra" aria-hidden="true">*</span></label>
+              <input id="c-name" type="text" autocomplete="name" required aria-required="true" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="Ihr Name" />
             </div>
             <div>
-              <label for="c-mail" class="block text-sm text-forest mb-1.5 font-medium">E-Mail</label>
-              <input id="c-mail" type="email" autocomplete="email" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="name@beispiel.de" />
+              <label for="c-mail" class="block text-sm text-forest mb-1.5 font-medium">E-Mail <span class="text-terra" aria-hidden="true">*</span></label>
+              <input id="c-mail" type="email" autocomplete="email" required aria-required="true" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp" placeholder="name@beispiel.de" />
             </div>
           </div>
           <div class="grid md:grid-cols-2 gap-5">
@@ -820,17 +875,17 @@
             </div>
           </div>
           <div>
-            <label for="c-text" class="block text-sm text-forest mb-1.5 font-medium">Ihre Nachricht</label>
-            <textarea id="c-text" rows="5" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp resize-none" placeholder="Erzählen Sie mir in ein paar Worten, worum es geht …"></textarea>
+            <label for="c-text" class="block text-sm text-forest mb-1.5 font-medium">Ihre Nachricht <span class="text-terra" aria-hidden="true">*</span></label>
+            <textarea id="c-text" rows="5" required aria-required="true" class="w-full rounded-xl border border-cream bg-paper/50 px-4 py-3 outline-none focus:border-sage-dp resize-none" placeholder="Erzählen Sie mir in ein paar Worten, worum es geht …"></textarea>
           </div>
           <label class="flex items-start gap-3 text-sm text-muted">
-            <input type="checkbox" id="c-consent" class="mt-1 accent-sage-dp w-4 h-4" />
-            <span>Ich habe die <a href="#datenschutz" data-nav="datenschutz" class="text-terra-dark underline underline-offset-2">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden.</span>
+            <input type="checkbox" id="c-consent" required aria-required="true" class="mt-1 accent-sage-dp w-4 h-4" />
+            <span>Ich habe die <a href="#datenschutz" data-nav="datenschutz" class="text-terra-dark underline underline-offset-2">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage einverstanden. <span class="text-terra" aria-hidden="true">*</span></span>
           </label>
           <input type="text" id="c-website" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px]" aria-hidden="true" />
-          <p id="formError" class="hidden text-sm text-terra"></p>
+          <p id="formError" class="hidden text-sm text-terra" role="alert" aria-live="polite"></p>
           <button id="submitBtn" type="submit" class="btn-terra w-full sm:w-auto px-8 py-3.5 rounded-full font-medium inline-flex items-center justify-center gap-2">
-            Nachricht senden <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-send"></use></svg>
+            <span>Nachricht senden</span> <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-send"></use></svg>
           </button>
         </form>
         <!-- Confirmation -->
@@ -1081,6 +1136,10 @@
   </div>
 </footer>
 
+<!-- Floating Back to Top Button -->
+<button id="backToTop" aria-label="Nach oben scrollen">
+  <svg class="w-5 h-5" aria-hidden="true"><use href="#icon-arrow-up"></use></svg>
+</button>
 
 <script>
 (function () {
@@ -1090,13 +1149,23 @@
     if (img.complete && img.naturalWidth === 0) img.setAttribute('data-broken', '1');
   });
 
-  /* ---------- Hash-based SPA routing ---------- */
+  /* ---------- Hash-based SPA routing with dynamic document titles ---------- */
   var validPages = ['home', 'haltung', 'angebote', 'kurt', 'kontakt', 'impressum', 'datenschutz'];
   var pages = {};
   validPages.forEach(function (k) {
     pages[k] = document.getElementById('page-' + k);
   });
   var navLinks = document.querySelectorAll('[data-nav]');
+
+  var pageTitles = {
+    home: 'Tharsei: Sei guten Mutes. | Psychosoziale Beratung · Esther Sluiter, Emden',
+    angebote: 'Angebote & Ablauf | Tharsei: Psychosoziale Beratung & Tiergestützte Pädagogik',
+    kurt: 'Therapiebegleithund Kurt | Tharsei: Tiergestützte Pädagogik Emden',
+    haltung: 'Über mich & Meine Haltung | Esther Sluiter · Tharsei Emden',
+    kontakt: 'Kontakt & Erstgespräch | Tharsei: Esther Sluiter Emden',
+    impressum: 'Impressum | Tharsei: Esther Sluiter',
+    datenschutz: 'Datenschutzerklärung | Tharsei: Esther Sluiter'
+  };
 
   function getTargetFromHash() {
     var h = (window.location.hash || '').replace('#', '').trim();
@@ -1117,6 +1186,9 @@
         l.classList.toggle('current', l.getAttribute('data-nav') === name);
       }
     });
+    if (pageTitles[name]) {
+      document.title = pageTitles[name];
+    }
     window.scrollTo({ top: 0, behavior: 'auto' });
     closeMenu();
   }
@@ -1175,15 +1247,41 @@
     }
   });
 
-  /* ---------- Accordion ---------- */
+  /* ---------- Accessible Accordion with ARIA state sync ---------- */
   document.querySelectorAll('.acc-head').forEach(function (head) {
     head.addEventListener('click', function () {
       var item = head.closest('.acc-item');
       var isOpen = item.classList.contains('open');
-      item.closest('.space-y-3')?.querySelectorAll('.acc-item.open').forEach(function (o) { o.classList.remove('open'); });
-      if (!isOpen) item.classList.add('open');
+      var container = item.closest('.space-y-3');
+      if (container) {
+        container.querySelectorAll('.acc-item').forEach(function (o) {
+          o.classList.remove('open');
+          var btn = o.querySelector('.acc-head');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      }
+      if (!isOpen) {
+        item.classList.add('open');
+        head.setAttribute('aria-expanded', 'true');
+      }
     });
   });
+
+  /* ---------- Floating Back to Top button ---------- */
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 400) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* ---------- Google Maps click-to-consent ---------- */
   var loadMapBtn = document.getElementById('loadMapBtn');
@@ -1208,12 +1306,21 @@
     });
   }
 
-  /* ---------- Accessible contact form ---------- */
+  /* ---------- Accessible contact form with visual submit feedback ---------- */
   var formInner = document.getElementById('contactForm');
   var submitBtn = document.getElementById('submitBtn');
   var success = document.getElementById('formSuccess');
   var resetBtn = document.getElementById('resetBtn');
   var formError = document.getElementById('formError');
+
+  function setSubmitLoading(isLoading) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isLoading;
+    submitBtn.style.opacity = isLoading ? '.7' : '';
+    submitBtn.innerHTML = isLoading
+      ? '<span>Wird gesendet…</span> <svg class="w-4 h-4 animate-spin" aria-hidden="true"><use href="#icon-loader-2"></use></svg>'
+      : '<span>Nachricht senden</span> <svg class="w-4 h-4" aria-hidden="true"><use href="#icon-send"></use></svg>';
+  }
 
   if (formInner) {
     formInner.addEventListener('submit', function (e) {
@@ -1251,8 +1358,7 @@
         return;
       }
 
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '.6';
+      setSubmitLoading(true);
 
       var data = new URLSearchParams();
       data.set('name', name);
@@ -1272,8 +1378,7 @@
       })
       .then(function (res) { return res.json(); })
       .then(function (json) {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '';
+        setSubmitLoading(false);
         if (json && (json.success === true || json.success === 'true')) {
           formInner.classList.add('hidden');
           success.classList.remove('hidden');
@@ -1284,8 +1389,7 @@
         }
       })
       .catch(function () {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '';
+        setSubmitLoading(false);
         formError.textContent = 'Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie mir direkt an info@tharsei.de.';
         formError.classList.remove('hidden');
       });
